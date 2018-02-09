@@ -1,0 +1,3 @@
+[submodule "src/gensvm"]
+	path = src/gensvm
+	url = https://github.com/GjjvdBurg/GenSVM
