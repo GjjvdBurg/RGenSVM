@@ -26,9 +26,31 @@ print.gensvm <- function(object, ...)
 {
     cat("\nCall:\n")
     dput(object$call)
+    cat("\nData:\n")
+    cat("\tn.objects:", object$n.objects, "\n")
+    cat("\tn.features:", object$n.features, "\n")
+    cat("\tn.classes:", object$n.classes, "\n")
+    cat("\tclasses:", object$classes, "\n")
+    cat("Parameters:\n")
+    cat("\tp:", object$p, "\n")
+    cat("\tlambda:", object$lambda, "\n")
+    cat("\tkappa:", object$kappa, "\n")
+    cat("\tepsilon:", object$epsilon, "\n")
+    cat("\tweights:", object$weights, "\n")
+    cat("\tmax.iter:", object$max.iter, "\n")
+    cat("\trandom.seed:", object$random.seed, "\n")
+    cat("\tkernel:", object$kernel, "\n")
+    if (object$kernel %in% c("poly", "rbf", "sigmoid")) {
+        cat("\tkernel.eigen.cutoff:", object$kernel.eigen.cutoff, "\n")
+        cat("\tgamma:", object$gamma, "\n")
+    }
+    if (object$kernel %in% c("poly", "sigmoid"))
+        cat("\tcoef:", object$coef, "\n")
+    if (object$kernel == 'poly')
+        cat("\tdegree:", object$degree, "\n")
+    cat("Results:\n")
+    cat("\tn.iter:", object$n.iter, "\n")
+    cat("\tn.support:", object$n.support, "\n")
 
-    # TODO: fill this out
-    #
-    #
     invisible(object)
 }
