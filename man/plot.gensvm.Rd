@@ -5,7 +5,8 @@
 \title{Plot the simplex space of the fitted GenSVM model}
 \usage{
 \method{plot}{gensvm}(fit, x, y.true = NULL, with.margins = TRUE,
-  with.shading = TRUE, with.legend = TRUE, center.plot = TRUE, ...)
+  with.shading = TRUE, with.legend = TRUE, center.plot = TRUE,
+  xlim = NULL, ylim = NULL, ...)
 }
 \arguments{
 \item{fit}{A fitted \code{gensvm} object}
@@ -24,6 +25,13 @@ identify misclassified objects.}
 
 \item{center.plot}{ensure that the boundaries and margins are always visible 
 in the plot}
+
+\item{xlim}{allows the user to force certain plot limits. If set, these 
+bounds will be used for the horizontal axis.}
+
+\item{ylim}{allows the user to force certain plot limits. If set, these 
+bounds will be used for the vertical axis and the value of center.plot will 
+be ignored}
 
 \item{...}{further arguments are ignored}
 }
