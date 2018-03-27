@@ -13,7 +13,7 @@
 #' (n_{classes} - 1)} matrix formed by the remaining rows.
 #'
 #' @author
-#' Gerrit J.J. van den Burg, Patrick J.F. Groenen
+#' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
 #' Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
 #'
 #' @references
@@ -25,7 +25,11 @@
 #' @export
 #'
 #' @examples
+#' x <- iris[, -5]
+#' y <- iris[, 5]
 #'
+#' fit <- gensvm(x, y)
+#' V <- coef(fit)
 #'
 coef.gensvm <- function(object, ...)
 {

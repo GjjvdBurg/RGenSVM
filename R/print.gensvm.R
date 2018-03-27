@@ -2,13 +2,14 @@
 #'
 #' @description Prints a short description of the fitted GenSVM model
 #'
-#' @param object A \code{gensvm} object to print
+#' @param fit A \code{gensvm} object to print
 #' @param \dots further arguments are ignored
 #'
-#' @return returns the object passed as input
+#' @return returns the object passed as input. This can be useful for chaining 
+#' operations on a fit object.
 #'
 #' @author
-#' Gerrit J.J. van den Burg, Patrick J.F. Groenen
+#' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
 #' Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
 #'
 #' @references
@@ -20,37 +21,52 @@
 #' @export
 #'
 #' @examples
+#' x <- iris[, -5]
+#' y <- iris[, 5]
 #'
+#' # fit and print the model
+#' fit <- gensvm(x, y)
+#' print(fit)
 #'
-print.gensvm <- function(object, ...)
+#' # (advanced) use the fact that print returns the fitted model
+#' fit <- gensvm(x, y)
+#' predict(print(fit), x)
+#'
+print.gensvm <- function(fit, ...)
 {
-    cat("\nCall:\n")
-    dput(object$call)
-    cat("\nData:\n")
-    cat("\tn.objects:", object$n.objects, "\n")
-    cat("\tn.features:", object$n.features, "\n")
-    cat("\tn.classes:", object$n.classes, "\n")
-    cat("\tclasses:", object$classes, "\n")
+    cat("Data:\n")
+    cat("\tn.objects:", fit$n.objects, "\n")
+    cat("\tn.features:", fit$n.features, "\n")
+    cat("\tn.classes:", fit$n.classes, "\n")
+    if (is.factor(fit$classes))
+        cat("\tclasses:", levels(fit$classes), "\n")
+    else
+        cat("\tclasses:", fit$classes, "\n")
     cat("Parameters:\n")
-    cat("\tp:", object$p, "\n")
-    cat("\tlambda:", object$lambda, "\n")
-    cat("\tkappa:", object$kappa, "\n")
-    cat("\tepsilon:", object$epsilon, "\n")
-    cat("\tweights:", object$weights, "\n")
-    cat("\tmax.iter:", object$max.iter, "\n")
-    cat("\trandom.seed:", object$random.seed, "\n")
-    cat("\tkernel:", object$kernel, "\n")
-    if (object$kernel %in% c("poly", "rbf", "sigmoid")) {
-        cat("\tkernel.eigen.cutoff:", object$kernel.eigen.cutoff, "\n")
-        cat("\tgamma:", object$gamma, "\n")
+    cat("\tp:", fit$p, "\n")
+    cat("\tlambda:", fit$lambda, "\n")
+    cat("\tkappa:", fit$kappa, "\n")
+    cat("\tepsilon:", fit$epsilon, "\n")
+    cat("\tweights:", fit$weights, "\n")
+    cat("\tmax.iter:", fit$max.iter, "\n")
+    cat("\trandom.seed:", fit$random.seed, "\n")
+    if (is.factor(fit$kernel)) {
+        cat("\tkernel:", levels(fit$kernel)[as.numeric(fit$kernel)], "\n")
+    } else {
+        cat("\tkernel:", fit$kernel, "\n")
     }
-    if (object$kernel %in% c("poly", "sigmoid"))
-        cat("\tcoef:", object$coef, "\n")
-    if (object$kernel == 'poly')
-        cat("\tdegree:", object$degree, "\n")
+    if (fit$kernel %in% c("poly", "rbf", "sigmoid")) {
+        cat("\tkernel.eigen.cutoff:", fit$kernel.eigen.cutoff, "\n")
+        cat("\tgamma:", fit$gamma, "\n")
+    }
+    if (fit$kernel %in% c("poly", "sigmoid"))
+        cat("\tcoef:", fit$coef, "\n")
+    if (fit$kernel == 'poly')
+        cat("\tdegree:", fit$degree, "\n")
     cat("Results:\n")
-    cat("\tn.iter:", object$n.iter, "\n")
-    cat("\tn.support:", object$n.support, "\n")
+    cat("\ttime:", fit$training.time, "\n")
+    cat("\tn.iter:", fit$n.iter, "\n")
+    cat("\tn.support:", fit$n.support, "\n")
 
-    invisible(object)
+    invisible(fit)
 }

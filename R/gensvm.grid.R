@@ -3,44 +3,17 @@
 #' @description This function performs a cross-validated grid search of the 
 #' model parameters to find the best hyperparameter configuration for a given 
 #' dataset. This function takes advantage of GenSVM's ability to use warm 
-#' starts to speed up computation. The function also uses the GenSVM C library 
-#' for speed. 
-#'
-#' There are two ways to use this function: either by providing a data frame 
-#' with the parameter configurations to try or by giving each of the function 
-#' inputs a vector of values to evaluate. In the latter case all combinations 
-#' of the provided values will be used (i.e. the product set).
+#' starts to speed up computation. The function uses the GenSVM C library for 
+#' speed. 
 #'
 #' @param X training data matrix. We denote the size of this matrix by 
 #' n_samples x n_features.
 #' @param y training vector of class labes of length n_samples. The number of 
 #' unique labels in this vector is denoted by n_classes.
-#' @param df Data frame with parameter configurations to evaluate.  
-#' If this is provided it overrides the other parameter ranges provided. The 
-#' data frame must provide *all* required columns, as described below.
-#' @param p vector of values to try for the \eqn{p} hyperparameter 
-#' for the \eqn{\ell_p} norm in the loss function. All values should be on the 
-#' interval [1.0, 2.0].
-#' @param lambda vector of values for the regularization parameter 
-#' \eqn{\lambda} in the loss function. All values should be larger than 0.
-#' @param kappa vector of values for the hinge function parameter in 
-#' the loss function. All values should be larger than -1.
-#' @param weights vector of values for the instance weights. Values 
-#' should be either 'unit', 'group', or both.
-#' @param kernel vector of values for the kernel type. Possible 
-#' values are: 'linear', 'rbf', 'poly', or 'sigmoid', or any combination of 
-#' these values. See the article \link[=gensvm-kernels]{Kernels in GenSVM} for 
-#' more information.
-#' @param gamma kernel parameter for the 'rbf', 'poly', and 'sigmoid' kernels.  
-#' If it is 'auto', 1/n_features will be used. See the article 
-#' \link[=gensvm-kernels]{Kernels in GenSVM} for more information.
-#' @param coef kernel parameter for the 'poly' and 'sigmoid' 
-#' kernels. See the article \link[=gensvm-kernels]{Kernels in GenSVM} for more 
-#' information.
-#' @param degree kernel parameter for the 'poly' kernel. See the 
-#' article \link[=gensvm-kernels]{Kernels in GenSVM} for more information.
-#' @param max.iter maximum number of iterations to run in the 
-#' optimization algorithm.
+#' @param param.grid String (\code{'tiny'}, \code{'small'}, or \code{'full'}) 
+#' or data frame with parameter configurations to evaluate.  Typically this is 
+#' the output of \code{expand.grid}. For more details, see "Using a Parameter 
+#' Grid" below.
 #' @param refit boolean variable. If true, the best model from cross validation 
 #' is fitted again on the entire dataset.
 #' @param scoring metric to use to evaluate the classifier performance during 
@@ -49,29 +22,94 @@
 #' values are better. If it is NULL, the accuracy score will be used.
 #' @param cv the number of cross-validation folds to use or a vector with the 
 #' same length as \code{y} where each unique value denotes a test split.
-#' @param verbose boolean variable to indicate whether training details should 
-#' be printed.
+#' @param verbose integer to indicate the level of verbosity (higher is more 
+#' verbose)
+#' @param return.train.score whether or not to return the scores on the 
+#' training splits
 #'
 #' @return A "gensvm.grid" S3 object with the following items:
+#' \item{call}{Call that produced this object}
+#' \item{param.grid}{Sorted version of the parameter grid used in training}
 #' \item{cv.results}{A data frame with the cross validation results}
 #' \item{best.estimator}{If refit=TRUE, this is the GenSVM model fitted with 
 #' the best hyperparameter configuration, otherwise it is NULL}
-#' \item{best.score}{Mean cross-validated score for the model with the best 
-#' hyperparameter configuration}
+#' \item{best.score}{Mean cross-validated test score for the model with the 
+#' best hyperparameter configuration}
 #' \item{best.params}{Parameter configuration that provided the highest mean 
-#' cross-validated score}
+#' cross-validated test score}
 #' \item{best.index}{Row index of the cv.results data frame that corresponds to 
 #' the best hyperparameter configuration}
 #' \item{n.splits}{The number of cross-validation splits}
+#' \item{n.objects}{The number of instances in the data}
+#' \item{n.features}{The number of features of the data}
+#' \item{n.classes}{The number of classes in the data}
+#' \item{classes}{Array with the unique classes in the data}
+#' \item{total.time}{Training time for the grid search}
+#' \item{cv.idx}{Array with cross validation indices used to split the data}
 #'
+#' @section Using a Parameter Grid:
+#' To evaluate certain paramater configurations, a data frame can be supplied 
+#' to the \code{param.grid} argument of the function. Such a data frame can 
+#' easily be generated using the R function \code{expand.grid}, or could be 
+#' created through other ways to test specific parameter configurations.
 #'
+#' Three parameter grids are predefined:
+#' \describe{
+#' \item{\code{'tiny'}}{This parameter grid is generated by the function 
+#' \code{\link{gensvm.load.tiny.grid}} and is the default parameter grid. It 
+#' consists of parameter configurations that are likely to perform well on 
+#' various datasets.}
+#' \item{\code{'small'}}{This grid is generated by 
+#' \code{\link{gensvm.load.small.grid}} and generates a data frame with 90 
+#' configurations. It is typically fast to train but contains some 
+#' configurations that are unlikely to perform well. It is included for 
+#' educational purposes.}
+#' \item{\code{'full'}}{This grid loads the parameter grid as used in the 
+#' GenSVM paper. It consists of 342 configurations and is generated by the 
+#' \code{\link{gensvm.load.full.grid}} function. Note that in the GenSVM paper 
+#' cross validation was done with this parameter grid, but the final training 
+#' step used \code{epsilon=1e-8}. The \code{\link{gensvm.refit}} function is 
+#' useful in this scenario.}
+#' }
 #'
-#' @section Using a DataFrame:
-#' ...
+#' When you provide your own parameter grid, beware that only certain column 
+#' names are allowed in the data frame corresponding to parameters for the 
+#' GenSVM model. These names are:
 #'
+#' \describe{
+#' \item{p}{Parameter for the lp norm. Must be in [1.0, 2.0].}
+#' \item{kappa}{Parameter for the Huber hinge function. Must be larger than 
+#' -1.}
+#' \item{lambda}{Parameter for the regularization term. Must be larger than 0.}
+#' \item{weight}{Instance weight specification. Allowed values are "unit" for 
+#' unit weights and "group" for group-size correction weights}
+#' \item{epsilon}{Stopping parameter for the algorithm. Must be larger than 0.}
+#' \item{max.iter}{Maximum number of iterations of the algorithm. Must be 
+#' larger than 0.}
+#' \item{kernel}{The kernel to used, allowed values are "linear", "poly", 
+#' "rbf", and "sigmoid". The default is "linear"}
+#' \item{coef}{Parameter for the "poly" and "sigmoid" kernels. See the section 
+#' "Kernels in GenSVM" in the code{ink{gensvm-package}} page for more info.}
+#' \item{degree}{Parameter for the "poly" kernel. See the section "Kernels in 
+#' GenSVM" in the code{ink{gensvm-package}} page for more info.}
+#' \item{gamma}{Parameter for the "poly", "rbf", and "sigmoid" kernels. See the 
+#' section "Kernels in GenSVM" in the code{ink{gensvm-package}} page for more 
+#' info.}
+#' }
+#'
+#' For variables that are not present in the \code{param.grid} data frame the 
+#' default parameter values in the \code{\link{gensvm}} function will be used.
+#'
+#' Note that this function reorders the parameter grid to make the warm starts 
+#' as efficient as possible, which is why the param.grid in the result will not 
+#' be the same as the param.grid in the input.
+#'
+#' @note
+#' This function returns partial results when the computation is interrupted by 
+#' the user.
 #'
 #' @author
-#' Gerrit J.J. van den Burg, Patrick J.F. Groenen
+#' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
 #' Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
 #'
 #' @references
@@ -80,37 +118,499 @@
 #' 17(225):1--42. URL \url{http://jmlr.org/papers/v17/14-526.html}.
 #'
 #' @seealso
-#' \code{\link{coef}}, \code{\link{print}}, \code{\link{predict}}, 
-#' \code{\link{plot}}, and \code{\link{gensvm.grid}}.
-#'
+#' \code{\link{predict.gensvm.grid}}, \code{\link{print.gensvm.grid}}, and 
+#' \code{\link{gensvm}}.
 #'
 #' @export
 #'
 #' @examples
-#' X <- 
+#' x <- iris[, -5]
+#' y <- iris[, 5]
 #'
-
-gensvm.grid <- function(X, y,
-                        df=NULL,
-                        p=c(1.0, 1.5, 2.0), 
-                        lambda=c(1e-8, 1e-6, 1e-4, 1e-2, 1),
-                        kappa=c(-0.9, 0.5, 5.0),
-                        weights=c('unit', 'group'),
-                        kernel=c('linear'),
-                        gamma=c('auto'),
-                        coef=c(0.0),
-                        degree=c(2.0),
-                        max.iter=c(1e8),
-                        refit=TRUE,
-                        scoring=NULL,
-                        cv=3,
-                        verbose=TRUE)
+#' # use the default parameter grid
+#' grid <- gensvm.grid(x, y)
+#'
+#' # use a smaller parameter grid
+#' pg <- expand.grid(p=c(1.0, 1.5, 2.0), kappa=c(-0.9, 1.0), epsilon=c(1e-3))
+#' grid <- gensvm.grid(x, y, param.grid=pg)
+#'
+#' # print the result
+#' print(grid)
+#'
+#' # Using a custom scoring function (accuracy as percentage)
+#' acc.pct <- function(yt, yp) { return (100 * sum(yt == yp) / length(yt)) }
+#' grid <- gensvm.grid(x, y, scoring=acc.pct)
+#'
+gensvm.grid <- function(X, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3, 
+                        verbose=0, return.train.score=TRUE)
 {
     call <- match.call()
 
+    n.objects <- nrow(X)
+    n.features <- ncol(X)
+    n.classes <- length(unique(y))
 
+    if (is.character(param.grid)) {
+        if (param.grid == 'tiny') {
+            param.grid <- gensvm.load.tiny.grid()
+        } else if (param.grid == 'small') {
+            param.grid <- gensvm.load.small.grid()
+        } else if (param.grid == 'full') {
+            param.grid <- gensvm.load.full.grid()
+        }
+    }
 
-    object <- list(...)
+    # Validate the range of the values for the gridsearch
+    gensvm.validate.param.grid(param.grid)
+
+    # Sort the parameter grid for efficient warm starts
+    param.grid <- gensvm.sort.param.grid(param.grid)
+
+    # Expand and convert the parameter grid for use in the C function
+    C.param.grid <- gensvm.expand.param.grid(param.grid, n.features)
+
+    # Convert labels to integers
+    classes <- sort(unique(y))
+    y.clean <- match(y, classes)
+
+    if (is.vector(cv) && length(cv) == n.objects) {
+        folds <- sort(unique(cv))
+        cv.idx <- match(cv, folds) - 1
+        n.splits <- length(folds)
+    } else {
+        cv.idx <- gensvm.generate.cv.idx(n.objects, cv[1])
+        n.splits <- cv
+    }
+
+    results <- .Call("R_gensvm_grid",
+                 as.matrix(X),
+                 as.integer(y.clean),
+                 as.matrix(C.param.grid),
+                 as.integer(nrow(C.param.grid)),
+                 as.integer(ncol(C.param.grid)),
+                 as.integer(cv.idx),
+                 as.integer(n.splits),
+                 as.integer(verbose),
+                 as.integer(n.objects),
+                 as.integer(n.features),
+                 as.integer(n.classes)
+                 )
+
+    cv.results <- gensvm.cv.results(results, param.grid, cv.idx, 
+                                    y.clean, scoring, 
+                                    return.train.score=return.train.score)
+
+    best.index <- which.min(cv.results$rank.test.score)[1]
+    if (!is.na(best.index)) { # can occur when user interrupts
+        best.score <- cv.results$mean.test.score[best.index]
+        best.params <- param.grid[best.index, , drop=F]
+        # Remove duplicate attributes from best.params
+        attr(best.params, "out.attrs") <- NULL
+    } else {
+        best.score <- NA
+        best.params <- list()
+    }
+
+    if (refit && !is.na(best.index)) {
+        gensvm.args <- as.list(best.params)
+        gensvm.args$X <- X
+        gensvm.args$y <- y
+        best.estimator <- do.call(gensvm, gensvm.args)
+    } else {
+        best.estimator <- NULL
+    }
+
+    object <- list(call = call, param.grid = param.grid, 
+                   cv.results = cv.results, best.estimator = best.estimator, 
+                   best.score = best.score, best.params = best.params, 
+                   best.index = best.index, n.splits = n.splits, 
+                   n.objects = n.objects, n.features = n.features, 
+                   n.classes = n.classes, classes = classes, 
+                   total.time = results$total.time, cv.idx = cv.idx)
     class(object) <- "gensvm.grid"
     return(object)
+}
+
+#' @title Load a tiny parameter grid for the GenSVM grid search
+#'
+#' @description This function returns a parameter grid to use in the GenSVM 
+#' grid search. This grid was obtained by analyzing the experiments done for 
+#' the GenSVM paper and selecting the configurations that achieve accuracy 
+#' within the 95th percentile on over 90% of the datasets. It is a good start 
+#' for a parameter search with a reasonably high chance of achieving good 
+#' performance on most datasets.
+#'
+#' Note that this grid is only tested to work well in combination with the 
+#' linear kernel.
+#'
+#' @author
+#' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
+#' Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
+#'
+#' @references
+#' Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized 
+#' Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
+#' 17(225):1--42. URL \url{http://jmlr.org/papers/v17/14-526.html}.
+#'
+#' @export
+#'
+#' @seealso
+#' \code{\link{gensvm.grid}}, \code{\link{gensvm.load.small.grid}}, 
+#' \code{\link{gensvm.load.full.grid}}.
+#'
+gensvm.load.tiny.grid <- function()
+{
+    df <- data.frame(
+                     p=c(2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 1.5, 2.0, 2.0),
+                     kappa=c(5.0, 5.0, 0.5, 5.0, -0.9, 5.0, 0.5, -0.9, 0.5, 0.5),
+                     lambda = c(2^-16, 2^-18, 2^-18, 2^-18, 2^-18, 2^-14, 2^-18,
+                                2^-18, 2^-16, 2^-16),
+                     weight = c('unit', 'unit', 'unit', 'group', 'unit',
+                                'unit', 'group', 'unit', 'unit', 'group')
+                     )
+    return(df)
+}
+
+#' @title Load a large parameter grid for the GenSVM grid search
+#'
+#' @description This loads the parameter grid from the GenSVM paper. It 
+#' consists of 342 configurations and is constructed from all possible 
+#' combinations of the following parameter sets:
+#'
+#' \code{p = c(1.0, 1.5, 2.0)}
+#'
+#' \code{lambda = 2^seq(-18, 18, 2)}
+#'
+#' \code{kappa = c(-0.9, 0.5, 5.0)}
+#'
+#' \code{weight = c('unit', 'group')}
+#'
+#' @author
+#' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
+#' Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
+#'
+#' @references
+#' Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized 
+#' Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
+#' 17(225):1--42. URL \url{http://jmlr.org/papers/v17/14-526.html}.
+#'
+#' @export
+#'
+#' @seealso
+#' \code{\link{gensvm.grid}}, \code{\link{gensvm.load.tiny.grid}}, 
+#' \code{\link{gensvm.load.full.grid}}.
+#'
+gensvm.load.full.grid <- function()
+{
+    df <- expand.grid(p=c(1.0, 1.5, 2.0), lambda=2^seq(-18, 18, 2),
+                      kappa=c(-0.9, 0.5, 5.0), weight=c('unit', 'group'),
+                      epsilon=c(1e-6))
+    return(df)
+}
+
+
+#' @title Load the default parameter grid for the GenSVM grid search
+#'
+#' @description This function loads a default parameter grid to use for the 
+#' GenSVM gridsearch. It contains all possible combinations of the following 
+#' parameter sets:
+#'
+#' \code{p = c(1.0, 1.5, 2.0)}
+#'
+#' \code{lambda = c(1e-8, 1e-6, 1e-4, 1e-2, 1)}
+#'
+#' \code{kappa = c(-0.9, 0.5, 5.0)}
+#'
+#' \code{weight = c('unit', 'group')}
+#'
+#' @author
+#' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
+#' Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
+#'
+#' @references
+#' Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized 
+#' Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
+#' 17(225):1--42. URL \url{http://jmlr.org/papers/v17/14-526.html}.
+#'
+#' @export
+#'
+#' @seealso
+#' \code{\link{gensvm.grid}}, \code{\link{gensvm.load.tiny.grid}}, 
+#' \code{\link{gensvm.load.small.grid}}.
+#'
+gensvm.load.small.grid <- function()
+{
+    df <- expand.grid(p=c(1.0, 1.5, 2.0), lambda=c(1e-8, 1e-6, 1e-4, 1e-2, 1),
+                      kappa=c(-0.9, 0.5, 5.0), weight=c('unit', 'group'))
+    return(df)
+}
+
+
+#' Generate a vector of cross-validation indices
+#'
+#' This function generates a vector of length \code{n} with values from 0 to 
+#' \code{folds-1} to mark train and test splits.
+#'
+gensvm.generate.cv.idx <- function(n, folds)
+{
+    cv.idx <- matrix(0, n, 1)
+
+    big.folds <- n %% folds
+    small.fold.size <- n %/% folds
+
+    j <- 0
+    for (i in 0:(small.fold.size * folds)) {
+        while (TRUE) {
+            idx <- round(runif(1, 1, n))
+            if (cv.idx[idx] == 0) {
+                cv.idx[idx] <- j
+                j <- j + 1
+                j <- (j %% folds)
+                break
+            }
+        }
+    }
+
+    j <- 1
+    i <- 0
+    while (i < big.folds) {
+        if (cv.idx[j] == 0) {
+            cv.idx[j] <- i
+            i <- i + 1
+        }
+        j <- j + 1
+    }
+
+    return(cv.idx)
+}
+
+gensvm.validate.param.grid <- function(df)
+{
+    expected.colnames <- c("kernel", "coef", "degree", "gamma", "weight", 
+                           "kappa", "lambda", "p", "epsilon", "max.iter")
+    for (name in colnames(df)) {
+        if (!(name %in% expected.colnames)) {
+            stop("Invalid header name supplied in parameter grid: ", name)
+        }
+    }
+
+    conditions <- list(
+        p=function(x) { x >= 1.0 && x <= 2.0 },
+        kappa=function(x) { x > -1.0 },
+        lambda=function(x) {x > 0.0 },
+        epsilon=function(x) { x > 0.0 },
+        gamma=function(x) { x != 0.0 },
+        weight=function(x) { x %in% c("unit", "group") },
+        kernel=function(x) { x %in% c("linear", "poly", "rbf", "sigmoid") }
+        )
+
+    for (idx in 1:nrow(df)) {
+        for (param in colnames(df)) {
+            if (!(param %in% names(conditions)))
+                next
+            func <- conditions[[param]]
+            value <- df[[param]][idx]
+            if (!func(value))
+                stop("Invalid value in grid for parameter: ", param)
+        }
+    }
+}
+
+gensvm.cv.results <- function(results, param.grid, cv.idx, y.true, 
+                                     scoring, return.train.score=TRUE)
+{
+    n.candidates <- nrow(param.grid)
+    n.splits <- length(unique(cv.idx))
+
+    score <- if(is.function(scoring)) scoring else gensvm.accuracy
+
+    # Build names and initialize the data.frame
+    names <- c("mean.fit.time", "mean.score.time", "mean.test.score")
+    if (return.train.score)
+        names <- c(names, "mean.train.score")
+    for (param in names(param.grid)) {
+        names <- c(names, sprintf("param.%s", param))
+    }
+    names <- c(names, "rank.test.score")
+    for (idx in sort(unique(cv.idx))) {
+        names <- c(names, sprintf("split%i.test.score", idx))
+        if (return.train.score)
+            names <- c(names, sprintf("split%i.train.score", idx))
+    }
+    names <- c(names, "std.fit.time", "std.score.time", "std.test.score")
+    if (return.train.score)
+        names <- c(names, "std.train.score")
+
+    df <- data.frame(matrix(ncol=length(names), nrow=n.candidates))
+    colnames(df) <- names
+
+    for (pidx in 1:n.candidates) {
+        param <- param.grid[pidx, , drop=F]
+        durations <- results$durations[pidx, ]
+        predictions <- results$predictions[pidx, ]
+
+        fit.times <- durations
+        score.times <- c()
+        test.scores <- c()
+        train.scores <- c()
+
+        is.missing <- any(is.na(durations))
+
+        for (test.idx in sort(unique(cv.idx))) {
+            score.time <- 0
+
+            if (return.train.score) {
+                y.train.pred <- predictions[cv.idx != test.idx]
+                y.train.true <- y.true[cv.idx != test.idx]
+
+                start.time <- proc.time()
+                train.score <- score(y.train.true, y.train.pred)
+                stop.time <- proc.time()
+                score.time <- score.time + (stop.time - start.time)[3]
+
+                train.scores <- c(train.scores, train.score)
+            }
+
+            y.test.pred <- predictions[cv.idx == test.idx]
+            y.test.true <- y.true[cv.idx == test.idx]
+
+            start.time <- proc.time()
+            test.score <- score(y.test.true, y.test.pred)
+            stop.time <- proc.time()
+            score.time <- score.time + (stop.time - start.time)[3]
+
+            test.scores <- c(test.scores, test.score)
+
+            score.times <- c(score.times, score.time)
+        }
+
+        df$mean.fit.time[pidx] <- mean(fit.times)
+        df$mean.score.time[pidx] <- if(is.missing) NA else mean(score.times)
+        df$mean.test.score[pidx] <- mean(test.scores)
+        df$std.fit.time[pidx] <- sd(fit.times)
+        df$std.score.time[pidx] <- if(is.missing) NA else sd(score.times)
+        df$std.test.score[pidx] <- sd(test.scores)
+        if (return.train.score) {
+            df$mean.train.score[pidx] <- mean(train.scores)
+            df$std.train.score[pidx] <- sd(train.scores)
+        }
+
+        for (parname in names(param.grid)) {
+            df[[sprintf("param.%s", parname)]][pidx] <- param[[parname]]
+        }
+
+        j <- 1
+        for (test.idx in sort(unique(cv.idx))) {
+            lbl <- sprintf("split%i.test.score", test.idx)
+            df[[lbl]][pidx] <- test.scores[j]
+            if (return.train.score) {
+                lbl <- sprintf("split%i.train.score", test.idx)
+                df[[lbl]][pidx] <- train.scores[j]
+            }
+            j <- j + 1
+        }
+    }
+
+    df$rank.test.score <- gensvm.rank.score(df$mean.test.score)
+
+    return(df)
+}
+
+gensvm.sort.param.grid <- function(param.grid)
+{
+    all.cols <- c("kernel", "coef", "degree", "gamma", "weight", "kappa",
+                  "lambda", "p", "epsilon", "max.iter")
+
+    order.args <- NULL
+    for (name in all.cols) {
+        if (name %in% colnames(param.grid)) {
+            if (name == "epsilon")
+                order.args <- cbind(order.args, -param.grid[[name]])
+            else
+                order.args <- cbind(order.args, param.grid[[name]])
+        }
+    }
+    sorted.pg <- param.grid[do.call(order, as.list(as.data.frame(order.args))), ]
+
+    rownames(sorted.pg) <- NULL
+
+    return(sorted.pg)
+}
+
+gensvm.expand.param.grid <- function(pg, n.features)
+{
+    if ("kernel" %in% colnames(pg)) {
+        all.kernels <- c("linear", "poly", "rbf", "sigmoid")
+        pg$kernel <- match(pg$kernel, all.kernels) - 1
+    } else {
+        pg$kernel <- 0
+    }
+
+    if ("weight" %in% colnames(pg)) {
+        all.weights <- c("unit", "group")
+        pg$weight <- match(pg$weight, all.weights)
+    } else {
+        pg$weight <- 1
+    }
+
+    if ("gamma" %in% colnames(pg)) {
+        pg$gamma[pg$gamma == "auto"] <- 1.0/n.features
+    } else {
+        pg$gamma <- 1.0/n.features
+    }
+
+    if (!("degree" %in% colnames(pg)))
+        pg$degree <- 2.0
+    if (!("coef" %in% colnames(pg)))
+        pg$coef <- 0.0
+    if (!("p" %in% colnames(pg)))
+        pg$p <- 1.0
+    if (!("lambda" %in% colnames(pg)))
+        pg$lambda <- 1e-8
+    if (!("kappa" %in% colnames(pg)))
+        pg$kappa <- 0.0
+    if (!("epsilon" %in% colnames(pg)))
+        pg$epsilon <- 1e-6
+    if (!("max.iter" %in% colnames(pg)))
+        pg$max.iter <- 1e8
+
+    C.param.grid <- data.frame(kernel=pg$kernel, coef=pg$coef, 
+                               degree=pg$degree, gamma=pg$gamma, 
+                               weight=pg$weight, kappa=pg$kappa, 
+                               lambda=pg$lambda, p=pg$p, epsilon=pg$epsilon, 
+                               max.iter=pg$max.iter)
+
+    return(C.param.grid)
+}
+
+#' @title Compute the ranks for the numbers in a given vector
+#'
+#' @details
+#' This function computes the ranks for the values in an array. The highest 
+#' value gets the smallest rank. Ties are broken by assigning the smallest 
+#' value.
+#'
+#' @param x array of numeric values
+#'
+#' @examples
+#' x <- c(7, 0.1, 0.5, 0.1, 10, 100, 200)
+#' gensvm.rank.score(x)
+#' [ 4 6 5 6 3 2 1 ]
+#'
+gensvm.rank.score <- function(x)
+{
+    x <- as.array(x)
+    l <- length(x)
+    r <- 1
+    ranks <- as.vector(matrix(0, l, 1))
+    ranks[which(is.na(x))] <- NA
+    while (!all(mapply(is.na, x))) {
+        m <- max(x, na.rm=T)
+        idx <- which(x == m)
+        ranks[idx] <- r
+        r <- r + length(idx)
+        x[idx] <- NA
+    }
+
+    return(ranks)
 }

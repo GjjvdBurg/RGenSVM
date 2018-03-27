@@ -12,3 +12,4 @@ Depends:
 URL: https://github.com/GjjvdBurg/RGenSVM
 BugReports: https://github.com/GjjvdBurg/RGenSVM
 RoxygenNote: 5.0.1
+NeedsCompilation: yes

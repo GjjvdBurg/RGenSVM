@@ -1,15 +1,15 @@
 #' GenSVM: A Generalized Multiclass Support Vector Machine
 #'
 #' The GenSVM classifier is a generalized multiclass support vector machine 
-#' (SVM). This classifier simultaneously aims to find decision boundaries that 
-#' separate the classes with as wide a margin as possible. In GenSVM, the loss 
-#' functions that measures how misclassifications are counted is very flexible.  
-#' This allows the user to tune the classifier to the dataset at hand and 
+#' (SVM). This classifier aims to find decision boundaries that separate the 
+#' classes with as wide a margin as possible. In GenSVM, the loss functions 
+#' that measures how misclassifications are counted is very flexible.  This 
+#' allows the user to tune the classifier to the dataset at hand and 
 #' potentially obtain higher classification accuracy. Moreover, this 
 #' flexibility means that GenSVM has a number of alternative multiclass SVMs as 
 #' special cases. One of the other advantages of GenSVM is that it is trained 
-#' in the primal, allowing the use of warm starts during optimization. This 
-#' means that for common tasks such as cross validation or repeated model 
+#' in the primal space, allowing the use of warm starts during optimization.  
+#' This means that for common tasks such as cross validation or repeated model 
 #' fitting, GenSVM can be trained very quickly.
 #'
 #' This package provides functions for training the GenSVM model either as a 
@@ -26,19 +26,71 @@
 #' GenSVM.}
 #' }
 #'
-#' Other available functions are:
+#' For the GenSVM and GenSVMGrid models the following two functions are 
+#' available. When applied to a GenSVMGrid object, the function is applied to 
+#' the best GenSVM model.
 #' \describe{
 #' \item{\code{\link{plot}}}{Plot the low-dimensional \emph{simplex} space 
-#' where the decision boundaries are fixed.}
+#' where the decision boundaries are fixed (for problems with 3 classes).}
 #' \item{\code{\link{predict}}}{Predict the class labels of new data using the 
 #' GenSVM model.}
-#' \item{\code{\link{coef}}}{Get the coefficients of the GenSVM model}
-#' \item{\code{\link{print}}}{Print a short description of the fitted GenSVM 
-#' model}
 #' }
 #'
+#' Moreover, for the GenSVM and GenSVMGrid models a \code{coef} function is 
+#' defined:
+#' \describe{
+#' \item{\code{\link{coef.gensvm}}}{Get the coefficients of the fitted GenSVM 
+#' model.}
+#' \item{\code{\link{coef.gensvm.grid}}}{Get the parameter grid of the GenSVM 
+#' grid search.}
+#' }
+#'
+#' The following utility functions are also included:
+#' \describe{
+#' \item{\code{\link{gensvm.accuracy}}}{Compute the accuracy score between true 
+#' and predicted class labels}
+#' \item{\code{\link{gensvm.maxabs.scale}}}{Scale each column of the dataset by 
+#' its maximum absolute value, preserving sparsity and mapping the data to [-1, 
+#' 1]}
+#' \item{\code{\link{gensvm.train.test.split}}}{Split a dataset into a training 
+#' and testing sample}
+#' \item{\code{\link{gensvm.refit}}}{Refit a fitted GenSVM model with slightly 
+#' different parameters or on a different dataset}
+#' }
+#'
+#' @section Kernels in GenSVM:
+#'
+#' GenSVM can be used for both linear and nonlinear multiclass support vector 
+#' machine classification. In general, linear classification will be faster but 
+#' depending on the dataset higher classification performance can be achieved 
+#' using a nonlinear kernel.
+#'
+#' The following nonlinear kernels are implemented in the GenSVM package:
+#' \describe{
+#'  \item{RBF}{The Radial Basis Function kernel is a well-known kernel function 
+#'  based on the Euclidean distance between objects. It is defined as
+#'  \deqn{
+#'      k(x_i, x_j) = exp( -\gamma || x_i - x_j ||^2 )
+#'      }
+#'      }
+#'  \item{Polynomial}{A polynomial kernel can also be used in GenSVM. This 
+#'  kernel function is implemented very generally and therefore takes three 
+#'  parameters (\code{coef}, \code{gamma}, and \code{degree}). It is defined 
+#'  as:
+#'  \deqn{
+#'      k(x_i, x_j) = ( \gamma x_i' x_j + coef)^{degree}
+#'  }
+#'  }
+#'  \item{Sigmoid}{The sigmoid kernel is the final kernel implemented in 
+#'  GenSVM. This kernel has two parameters and is implemented as follows:
+#'  \deqn{
+#'      k(x_i, x_j) = \tanh( \gamma x_i' x_j + coef)
+#'  }
+#'  }
+#'  }
+#'
 #' @author
-#' Gerrit J.J. van den Burg, Patrick J.F. Groenen
+#' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
 #' Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
 #'
 #' @references
@@ -46,11 +98,10 @@
 #' Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
 #' 17(225):1--42. URL \url{http://jmlr.org/papers/v17/14-526.html}.
 #'
-#' @examples
-#'
+#' @aliases
+#' gensvm.package
 #'
 #' @name gensvm-package
 #' @docType package
-#' @import
 NULL
 #>NULL
