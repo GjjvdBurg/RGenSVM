@@ -28,7 +28,7 @@ y <- iris[, 5]
 
 # fit a standard model and refit with slightly different parameters
 fit <- gensvm(x, y)
-fit2 <- gensvm.refit(x, y, epsilon=1e-8)
+fit2 <- gensvm.refit(fit, x, y, epsilon=1e-8)
 
 # refit a model returned by a grid search
 grid <- gensvm.grid(x, y)

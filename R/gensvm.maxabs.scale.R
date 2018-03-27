@@ -44,7 +44,6 @@
 #' apply(x.scale, 2, max)
 #'
 #' # with a train and test dataset
-#' x <- iris[, -5]
 #' split <- gensvm.train.test.split(x)
 #' x.train <- split$x.train
 #' x.test <- split$x.test

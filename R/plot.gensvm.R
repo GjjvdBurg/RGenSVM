@@ -46,9 +46,9 @@
 #'
 #' # plot only misclassified samples
 #' x.mis <- x[predict(fit, x) != y, ]
-#' y.mis.true <- y[predict(fit, x) != y, ]
-#' plot(fit, x.bad)
-#' plot(fit, x.bad, y.true=y.mis.true)
+#' y.mis.true <- y[predict(fit, x) != y]
+#' plot(fit, x.mis)
+#' plot(fit, x.mis, y.true=y.mis.true)
 #'
 plot.gensvm <- function(fit, x, y.true=NULL, with.margins=TRUE, 
                         with.shading=TRUE, with.legend=TRUE, center.plot=TRUE,

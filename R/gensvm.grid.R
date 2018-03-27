@@ -592,11 +592,6 @@ gensvm.expand.param.grid <- function(pg, n.features)
 #'
 #' @param x array of numeric values
 #'
-#' @examples
-#' x <- c(7, 0.1, 0.5, 0.1, 10, 100, 200)
-#' gensvm.rank.score(x)
-#' [ 4 6 5 6 3 2 1 ]
-#'
 gensvm.rank.score <- function(x)
 {
     x <- as.array(x)

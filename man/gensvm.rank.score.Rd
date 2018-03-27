@@ -14,10 +14,4 @@ This function computes the ranks for the values in an array. The highest
 value gets the smallest rank. Ties are broken by assigning the smallest 
 value.
 }
-\examples{
-x <- c(7, 0.1, 0.5, 0.1, 10, 100, 200)
-gensvm.rank.score(x)
-[ 4 6 5 6 3 2 1 ]
-
-}
 
