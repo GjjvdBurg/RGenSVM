@@ -70,7 +70,7 @@ avialable through the following R command:
 Alternatively, you can use the following BibTeX code directly:
 
     @article{JMLR:v17:14-526,
-      author  = {Gerrit J.J. van den Burg and Patrick J.F. Groenen},
+      author  = {Gerrit J.J. {van den Burg} and Patrick J.F. Groenen},
       title   = {{GenSVM}: A Generalized Multiclass Support Vector Machine},
       journal = {Journal of Machine Learning Research},
       year    = {2016},
