@@ -71,12 +71,13 @@ gensvm.refit <- function(fit, X, y, p=NULL, lambda=NULL, kappa=NULL,
     # this call to gensvm. If we don't set the error handler, R will 
     # unnecessarily drop to a browser() session. We reset the error handler 
     # after the call to gensvm().
+    errfunc <- getOption('error')
     options(error=function() {})
     newfit <- gensvm(X, y, p=p, lambda=lambda, kappa=kappa, epsilon=epsilon, 
                      weights=weights, kernel=kernel, gamma=gamma, coef=coef,
                      degree=degree, kernel.eigen.cutoff=kernel.eigen.cutoff,
                      verbose=verbose, max.iter=max.iter, seed.V=coef(fit))
-    options(error=NULL)
+    options(error=errfunc)
 
     return(newfit)
 }
