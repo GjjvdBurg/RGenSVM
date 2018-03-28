@@ -6,6 +6,17 @@ classifier in R.
 
 ![Pretty picture](./.image.png)
 
+```r
+# Plot created with:
+> library(gensvm)
+> x <- iris[, -5]
+> y <- iris[, 5]
+> fit <- gensvm(x, y, kernel='rbf', gamma=10, max.iter=5000, verbose=1,
+                random.seed=123)
+> plot(fit, x, y, xlim=c(-5, 5), ylim=c(-5, 5))
+> title("Iris dataset (GenSVM + RBF)")
+```
+
 Introduction
 ------------
 
@@ -32,7 +43,9 @@ Installation
 
 This package can be installed from CRAN:
 
-    install.packages('gensvm')
+```r
+> install.packages('gensvm')
+```
 
 Usage
 -----
@@ -65,7 +78,9 @@ Citing
 If you use GenSVM in your work, please cite the paper using the information 
 avialable through the following R command:
 
-    citation('gensvm')
+```r
+> citation('gensvm')
+```
 
 Alternatively, you can use the following BibTeX code directly:
 
