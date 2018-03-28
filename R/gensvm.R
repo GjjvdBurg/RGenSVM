@@ -133,21 +133,16 @@ gensvm <- function(X, y, p=1.0, lambda=1e-8, kappa=0.0, epsilon=1e-6,
     if (gamma == 'auto')
         gamma <- 1.0/n.features
 
+    if (!gensvm.validate.params(p=p, kappa=kappa, lambda=lambda, 
+                                epsilon=epsilon, gamma=gamma, weights=weights,
+                                kernel=kernel))
+        return(NULL)
+
     # Convert weights to index
     weight.idx <- which(c("unit", "group") == weights)
-    if (length(weight.idx) == 0) {
-        cat("Error: Incorrect weight specification. ",
-             "Valid options are 'unit' and 'group'")
-        return
-    }
 
     # Convert kernel to index (remember off-by-one for R vs. C)
     kernel.idx <- which(c("linear", "poly", "rbf", "sigmoid") == kernel) - 1
-    if (length(kernel.idx) == 0) {
-        cat("Error: Incorrect kernel specification. ",
-             "Valid options are 'linear', 'poly', 'rbf', and 'sigmoid'")
-        return
-    }
 
     seed.rows <- if(is.null(seed.V)) -1 else nrow(seed.V)
     seed.cols <- if(is.null(seed.V)) -1 else ncol(seed.V)

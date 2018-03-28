@@ -162,7 +162,8 @@ gensvm.grid <- function(X, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3,
     }
 
     # Validate the range of the values for the gridsearch
-    gensvm.validate.param.grid(param.grid)
+    if (!gensvm.validate.param.grid(param.grid))
+        return(NULL)
 
     # Sort the parameter grid for efficient warm starts
     param.grid <- gensvm.sort.param.grid(param.grid)
@@ -377,38 +378,6 @@ gensvm.generate.cv.idx <- function(n, folds)
     }
 
     return(cv.idx)
-}
-
-gensvm.validate.param.grid <- function(df)
-{
-    expected.colnames <- c("kernel", "coef", "degree", "gamma", "weight", 
-                           "kappa", "lambda", "p", "epsilon", "max.iter")
-    for (name in colnames(df)) {
-        if (!(name %in% expected.colnames)) {
-            stop("Invalid header name supplied in parameter grid: ", name)
-        }
-    }
-
-    conditions <- list(
-        p=function(x) { x >= 1.0 && x <= 2.0 },
-        kappa=function(x) { x > -1.0 },
-        lambda=function(x) {x > 0.0 },
-        epsilon=function(x) { x > 0.0 },
-        gamma=function(x) { x != 0.0 },
-        weight=function(x) { x %in% c("unit", "group") },
-        kernel=function(x) { x %in% c("linear", "poly", "rbf", "sigmoid") }
-        )
-
-    for (idx in 1:nrow(df)) {
-        for (param in colnames(df)) {
-            if (!(param %in% names(conditions)))
-                next
-            func <- conditions[[param]]
-            value <- df[[param]][idx]
-            if (!func(value))
-                stop("Invalid value in grid for parameter: ", param)
-        }
-    }
 }
 
 gensvm.cv.results <- function(results, param.grid, cv.idx, y.true, 
