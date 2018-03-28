@@ -463,7 +463,11 @@ gensvm.cv.results <- function(results, param.grid, cv.idx, y.true,
         }
 
         for (parname in names(param.grid)) {
-            df[[sprintf("param.%s", parname)]][pidx] <- param[[parname]]
+            header <- sprintf("param.%s", parname)
+            val <- param[[parname]]
+            if (is.factor(val))
+                val <- levels(val)[val]
+            df[[header]][pidx] <- val
         }
 
         j <- 1

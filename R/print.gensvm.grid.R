@@ -58,8 +58,11 @@ print.gensvm.grid <- function(grid, ...)
         best <- grid$cv.results[grid$best.index, ]
         cat("\tBest mean test score:", best$mean.test.score, "\n")
         cat("\tBest mean fit time:", best$mean.fit.time, "\n")
-        for (name in colnames(grid$best.params))
-            cat("\tBest parameter", name, "=", grid$best.params[[name]], "\n")
+        for (name in colnames(grid$best.params)) {
+            val <- grid$best.params[[name]]
+            val <- if(is.factor(val)) levels(val)[val] else val
+            cat("\tBest parameter", name, "=", val, "\n")
+        }
     }
 
     invisible(grid)
