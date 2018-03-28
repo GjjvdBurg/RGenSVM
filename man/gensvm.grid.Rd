@@ -144,6 +144,11 @@ print(grid)
 acc.pct <- function(yt, yp) { return (100 * sum(yt == yp) / length(yt)) }
 grid <- gensvm.grid(x, y, scoring=acc.pct)
 
+# With RBF kernel and very verbose progress printing
+pg <- expand.grid(kernel=c('rbf'), gamma=c(1e-2, 1e-1, 1, 1e1, 1e2),
+                  lambda=c(1e-8, 1e-6), max.iter=c(5000))
+grid <- gensvm.grid(x, y, param.grid=pg, verbose=2)
+
 }
 \author{
 Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
