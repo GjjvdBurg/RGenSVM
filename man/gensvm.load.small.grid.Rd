@@ -12,12 +12,9 @@ GenSVM gridsearch. It contains all possible combinations of the following
 parameter sets:
 
 \code{p = c(1.0, 1.5, 2.0)}
-
 \code{lambda = c(1e-8, 1e-6, 1e-4, 1e-2, 1)}
-
 \code{kappa = c(-0.9, 0.5, 5.0)}
-
-\code{weight = c('unit', 'group')}
+\code{weights= c('unit', 'group')}
 }
 \author{
 Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr

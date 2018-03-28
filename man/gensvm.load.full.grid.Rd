@@ -12,12 +12,9 @@ consists of 342 configurations and is constructed from all possible
 combinations of the following parameter sets:
 
 \code{p = c(1.0, 1.5, 2.0)}
-
 \code{lambda = 2^seq(-18, 18, 2)}
-
 \code{kappa = c(-0.9, 0.5, 5.0)}
-
-\code{weight = c('unit', 'group')}
+\code{weights = c('unit', 'group')}
 }
 \author{
 Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr

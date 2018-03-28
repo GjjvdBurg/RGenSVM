@@ -103,7 +103,7 @@ GenSVM model. These names are:
 \item{kappa}{Parameter for the Huber hinge function. Must be larger than 
 -1.}
 \item{lambda}{Parameter for the regularization term. Must be larger than 0.}
-\item{weight}{Instance weight specification. Allowed values are "unit" for 
+\item{weights}{Instance weights specification. Allowed values are "unit" for 
 unit weights and "group" for group-size correction weights}
 \item{epsilon}{Stopping parameter for the algorithm. Must be larger than 0.}
 \item{max.iter}{Maximum number of iterations of the algorithm. Must be 

@@ -81,7 +81,7 @@
 #' \item{kappa}{Parameter for the Huber hinge function. Must be larger than 
 #' -1.}
 #' \item{lambda}{Parameter for the regularization term. Must be larger than 0.}
-#' \item{weight}{Instance weight specification. Allowed values are "unit" for 
+#' \item{weights}{Instance weights specification. Allowed values are "unit" for 
 #' unit weights and "group" for group-size correction weights}
 #' \item{epsilon}{Stopping parameter for the algorithm. Must be larger than 0.}
 #' \item{max.iter}{Maximum number of iterations of the algorithm. Must be 
@@ -264,10 +264,10 @@ gensvm.load.tiny.grid <- function()
     df <- data.frame(
                      p=c(2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 1.5, 2.0, 2.0),
                      kappa=c(5.0, 5.0, 0.5, 5.0, -0.9, 5.0, 0.5, -0.9, 0.5, 0.5),
-                     lambda = c(2^-16, 2^-18, 2^-18, 2^-18, 2^-18, 2^-14, 2^-18,
-                                2^-18, 2^-16, 2^-16),
-                     weight = c('unit', 'unit', 'unit', 'group', 'unit',
-                                'unit', 'group', 'unit', 'unit', 'group')
+                     lambda=c(2^-16, 2^-18, 2^-18, 2^-18, 2^-18, 2^-14, 2^-18,
+                              2^-18, 2^-16, 2^-16),
+                     weights=c('unit', 'unit', 'unit', 'group', 'unit',
+                               'unit', 'group', 'unit', 'unit', 'group')
                      )
     return(df)
 }
@@ -279,12 +279,9 @@ gensvm.load.tiny.grid <- function()
 #' combinations of the following parameter sets:
 #'
 #' \code{p = c(1.0, 1.5, 2.0)}
-#'
 #' \code{lambda = 2^seq(-18, 18, 2)}
-#'
 #' \code{kappa = c(-0.9, 0.5, 5.0)}
-#'
-#' \code{weight = c('unit', 'group')}
+#' \code{weights = c('unit', 'group')}
 #'
 #' @author
 #' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
@@ -304,7 +301,7 @@ gensvm.load.tiny.grid <- function()
 gensvm.load.full.grid <- function()
 {
     df <- expand.grid(p=c(1.0, 1.5, 2.0), lambda=2^seq(-18, 18, 2),
-                      kappa=c(-0.9, 0.5, 5.0), weight=c('unit', 'group'),
+                      kappa=c(-0.9, 0.5, 5.0), weights=c('unit', 'group'),
                       epsilon=c(1e-6))
     return(df)
 }
@@ -317,12 +314,9 @@ gensvm.load.full.grid <- function()
 #' parameter sets:
 #'
 #' \code{p = c(1.0, 1.5, 2.0)}
-#'
 #' \code{lambda = c(1e-8, 1e-6, 1e-4, 1e-2, 1)}
-#'
 #' \code{kappa = c(-0.9, 0.5, 5.0)}
-#'
-#' \code{weight = c('unit', 'group')}
+#' \code{weights= c('unit', 'group')}
 #'
 #' @author
 #' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
@@ -342,7 +336,7 @@ gensvm.load.full.grid <- function()
 gensvm.load.small.grid <- function()
 {
     df <- expand.grid(p=c(1.0, 1.5, 2.0), lambda=c(1e-8, 1e-6, 1e-4, 1e-2, 1),
-                      kappa=c(-0.9, 0.5, 5.0), weight=c('unit', 'group'))
+                      kappa=c(-0.9, 0.5, 5.0), weights=c('unit', 'group'))
     return(df)
 }
 
@@ -519,7 +513,7 @@ gensvm.cv.results <- function(results, param.grid, cv.idx, y.true,
 
 gensvm.sort.param.grid <- function(param.grid)
 {
-    all.cols <- c("kernel", "coef", "degree", "gamma", "weight", "kappa",
+    all.cols <- c("kernel", "coef", "degree", "gamma", "weights", "kappa",
                   "lambda", "p", "epsilon", "max.iter")
 
     order.args <- NULL
@@ -547,11 +541,11 @@ gensvm.expand.param.grid <- function(pg, n.features)
         pg$kernel <- 0
     }
 
-    if ("weight" %in% colnames(pg)) {
+    if ("weights" %in% colnames(pg)) {
         all.weights <- c("unit", "group")
-        pg$weight <- match(pg$weight, all.weights)
+        pg$weights <- match(pg$weights, all.weights)
     } else {
-        pg$weight <- 1
+        pg$weights <- 1
     }
 
     if ("gamma" %in% colnames(pg)) {
@@ -577,10 +571,9 @@ gensvm.expand.param.grid <- function(pg, n.features)
 
     C.param.grid <- data.frame(kernel=pg$kernel, coef=pg$coef, 
                                degree=pg$degree, gamma=pg$gamma, 
-                               weight=pg$weight, kappa=pg$kappa, 
+                               weights=pg$weights, kappa=pg$kappa, 
                                lambda=pg$lambda, p=pg$p, epsilon=pg$epsilon, 
                                max.iter=pg$max.iter)
-
     return(C.param.grid)
 }
 
