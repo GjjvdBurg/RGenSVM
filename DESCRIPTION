@@ -1,5 +1,5 @@
 Package: gensvm
-Version: 0.0.1
+Version: 0.0.2
 Date: 2017-07-26
 Title: GenSVM
 Authors@R: c(person("Gertjan", "van den Burg", role=c("aut", "cre"),
