@@ -75,7 +75,7 @@
 #'
 #' @seealso
 #' \code{\link{coef}}, \code{\link{print}}, \code{\link{predict}}, 
-#' \code{\link{plot}}, and \code{\link{gensvm.grid}}.
+#' \code{\link{plot}}, \code{\link{gensvm.grid}}, \code{\link{gensvm-package}}
 #'
 #' @export
 #' @useDynLib gensvm_wrapper, .registration = TRUE

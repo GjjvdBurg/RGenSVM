@@ -14,8 +14,6 @@
 #'
 #' @return a new fitted \code{gensvm} model
 #'
-#' @export
-#'
 #' @author
 #' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
 #' Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
@@ -24,6 +22,11 @@
 #' Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized 
 #' Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
 #' 17(225):1--42. URL \url{http://jmlr.org/papers/v17/14-526.html}.
+#'
+#' @seealso
+#' \code{\link{gensvm}}, \code{\link{gensvm-package}}
+#'
+#' @export
 #'
 #' @examples
 #' x <- iris[, -5]

@@ -98,6 +98,9 @@
 #' Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
 #' 17(225):1--42. URL \url{http://jmlr.org/papers/v17/14-526.html}.
 #'
+#' @seealso
+#' \code{\link{gensvm}}, \code{\link{gensvm.grid}}
+#'
 #' @aliases
 #' gensvm.package
 #'

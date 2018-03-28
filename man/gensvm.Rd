@@ -131,6 +131,6 @@ Multiclass Support Vector Machine}, Journal of Machine Learning Research,
 }
 \seealso{
 \code{\link{coef}}, \code{\link{print}}, \code{\link{predict}}, 
-\code{\link{plot}}, and \code{\link{gensvm.grid}}.
+\code{\link{plot}}, \code{\link{gensvm.grid}}, \code{\link{gensvm-package}}
 }
 
