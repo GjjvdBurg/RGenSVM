@@ -156,6 +156,11 @@ gensvm.grid <- function(X, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3,
     n.features <- ncol(X)
     n.classes <- length(unique(y))
 
+    if (n.objects != length(y)) {
+        cat("Error: X and y are not the same length.\n")
+        return(NULL)
+    }
+
     if (is.character(param.grid)) {
         if (param.grid == 'tiny') {
             param.grid <- gensvm.load.tiny.grid()

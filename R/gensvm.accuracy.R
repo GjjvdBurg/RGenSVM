@@ -31,7 +31,7 @@ gensvm.accuracy <- function(y.true, y.pred)
     if (n != length(y.pred)) {
         cat("Error: Can't compute accuracy if vector don't have the ",
             "same length\n")
-        return
+        return(-1)
     }
 
     return (sum(y.true == y.pred) / n)
