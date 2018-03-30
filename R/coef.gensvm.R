@@ -38,7 +38,8 @@
 coef.gensvm <- function(fit, ...)
 {
     V <- fit$V
-    name <- c("translation", fit$feature.names)
+    x <- eval.parent(fit$call$x)
+    name <- c("translation", colnames(x))
     rownames(V) <- name
     return(V)
 }
