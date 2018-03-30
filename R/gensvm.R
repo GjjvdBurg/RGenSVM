@@ -116,6 +116,11 @@ gensvm <- function(X, y, p=1.0, lambda=1e-8, kappa=0.0, epsilon=1e-6,
 {
     call <- match.call()
 
+    if (dim(as.matrix(y))[2] > 1) {
+        cat("Error: y can not have more than one column\n")
+        return(invisible(NULL))
+    }
+
     # Generate the random.seed value in R if it is NULL. This way users can 
     # reproduce the run because it is returned in the output object.
     if (is.null(random.seed))
