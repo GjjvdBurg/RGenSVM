@@ -65,14 +65,14 @@ plot.gensvm <- function(fit, x, y.true=NULL, with.margins=TRUE,
 {
     if (!(fit$n.classes %in% c(2,3))) {
         cat("Error: Can only plot with 2 or 3 classes\n")
-        return(NULL)
+        invisible(NULL)
     }
 
     # Sanity check
     if (ncol(x) != fit$n.features) {
         cat("Error: Number of features of fitted model and testing data 
             disagree.\n")
-        return(NULL)
+        invisible(NULL)
     }
 
     x.train <- fit$X.train
@@ -80,12 +80,12 @@ plot.gensvm <- function(fit, x, y.true=NULL, with.margins=TRUE,
         cat("Error: The training data is needed to plot data for ",
              "nonlinear GenSVM. This data is not present in the fitted ",
              "model!\n", sep="")
-        return(NULL)
+        invisible(NULL)
     }
     if (!is.null(x.train) && ncol(x.train) != fit$n.features) {
         cat("Error: Number of features of fitted model and training data ",
             "disagree.\n", sep="")
-        return(NULL)
+        invisible(NULL)
     }
 
     x <- as.matrix(x)

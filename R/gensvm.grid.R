@@ -158,7 +158,7 @@ gensvm.grid <- function(X, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3,
 
     if (n.objects != length(y)) {
         cat("Error: X and y are not the same length.\n")
-        return(NULL)
+        invisible(NULL)
     }
 
     if (is.character(param.grid)) {
@@ -173,7 +173,7 @@ gensvm.grid <- function(X, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3,
 
     # Validate the range of the values for the gridsearch
     if (!gensvm.validate.param.grid(param.grid))
-        return(NULL)
+        invisible(NULL)
 
     # Sort the parameter grid for efficient warm starts
     param.grid <- gensvm.sort.param.grid(param.grid)
