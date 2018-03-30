@@ -24,8 +24,9 @@ function (i.e. \code{model.matrix( ~ var - 1)}).}
 \item{kappa}{parameter for the hinge function in the loss function (kappa > 
 -1.0)}
 
-\item{weights}{type of instance weights to use. Options are 'unit' for unit 
-weights and 'group' for group size correction weight (eq. 4 in the paper).}
+\item{weights}{type or vector of instance weights to use. Options are 'unit' 
+for unit weights and 'group' for group size correction weights (eq. 4 in the 
+paper). Alternatively, a vector of weights can be provided.}
 
 \item{kernel}{the kernel type to use in the classifier. It must be one of 
 'linear', 'poly', 'rbf', or 'sigmoid'. See the section "Kernels in GenSVM" 

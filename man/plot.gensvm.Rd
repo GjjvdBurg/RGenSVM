@@ -4,18 +4,15 @@
 \alias{plot.gensvm}
 \title{Plot the simplex space of the fitted GenSVM model}
 \usage{
-\method{plot}{gensvm}(fit, x, y.true = NULL, with.margins = TRUE,
+\method{plot}{gensvm}(fit, y, x.test = NULL, with.margins = TRUE,
   with.shading = TRUE, with.legend = TRUE, center.plot = TRUE,
   xlim = NULL, ylim = NULL, ...)
 }
 \arguments{
 \item{fit}{A fitted \code{gensvm} object}
 
-\item{x}{the dataset to plot}
-
-\item{y.true}{the true data labels. If provided the objects will be colored 
-using the true labels instead of the predicted labels. This makes it easy to 
-identify misclassified objects.}
+\item{y}{the labels to color points with (if NULL the predicted labels are 
+used)}
 
 \item{with.margins}{plot the margins}
 
@@ -34,6 +31,8 @@ bounds will be used for the vertical axis and the value of center.plot will
 be ignored}
 
 \item{...}{further arguments are passed to the builtin plot() function}
+
+\item{x}{the dataset to plot (if NULL the training data is used)}
 }
 \value{
 returns the object passed as input
@@ -52,16 +51,16 @@ y <- iris[, 5]
 fit <- gensvm(x, y)
 
 # plot the simplex space
-plot(fit, x)
+plot(fit)
 
 # plot and use the true colors (easier to spot misclassified samples)
-plot(fit, x, y.true=y)
+plot(fit, y)
 
 # plot only misclassified samples
-x.mis <- x[predict(fit, x) != y, ]
-y.mis.true <- y[predict(fit, x) != y]
-plot(fit, x.mis)
-plot(fit, x.mis, y.true=y.mis.true)
+x.mis <- x[predict(fit) != y, ]
+y.mis.true <- y[predict(fit) != y]
+plot(fit, x.test=x.mis)
+plot(fit, y.mis.true, x.test=x.mis)
 
 }
 \author{

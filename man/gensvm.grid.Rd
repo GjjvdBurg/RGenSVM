@@ -4,11 +4,11 @@
 \alias{gensvm.grid}
 \title{Cross-validated grid search for GenSVM}
 \usage{
-gensvm.grid(X, y, param.grid = "tiny", refit = TRUE, scoring = NULL,
+gensvm.grid(x, y, param.grid = "tiny", refit = TRUE, scoring = NULL,
   cv = 3, verbose = 0, return.train.score = TRUE)
 }
 \arguments{
-\item{X}{training data matrix. We denote the size of this matrix by 
+\item{x}{training data matrix. We denote the size of this matrix by 
 n_samples x n_features.}
 
 \item{y}{training vector of class labes of length n_samples. The number of 

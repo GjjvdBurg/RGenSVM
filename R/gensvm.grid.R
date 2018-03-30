@@ -6,7 +6,7 @@
 #' starts to speed up computation. The function uses the GenSVM C library for 
 #' speed. 
 #'
-#' @param X training data matrix. We denote the size of this matrix by 
+#' @param x training data matrix. We denote the size of this matrix by 
 #' n_samples x n_features.
 #' @param y training vector of class labes of length n_samples. The number of 
 #' unique labels in this vector is denoted by n_classes.
@@ -147,13 +147,13 @@
 #'                   lambda=c(1e-8, 1e-6), max.iter=c(5000))
 #' grid <- gensvm.grid(x, y, param.grid=pg, verbose=2)
 #'
-gensvm.grid <- function(X, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3, 
+gensvm.grid <- function(x, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3, 
                         verbose=0, return.train.score=TRUE)
 {
     call <- match.call()
 
-    n.objects <- nrow(X)
-    n.features <- ncol(X)
+    n.objects <- nrow(x)
+    n.features <- ncol(x)
     n.classes <- length(unique(y))
 
     if (n.objects != length(y)) {
@@ -195,7 +195,7 @@ gensvm.grid <- function(X, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3,
     }
 
     results <- .Call("R_gensvm_grid",
-                 as.matrix(X),
+                 data.matrix(x),
                  as.integer(y.clean),
                  as.matrix(C.param.grid),
                  as.integer(nrow(C.param.grid)),
@@ -225,7 +225,7 @@ gensvm.grid <- function(X, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3,
 
     if (refit && !is.na(best.index)) {
         gensvm.args <- as.list(best.params)
-        gensvm.args$X <- X
+        gensvm.args$x <- x
         gensvm.args$y <- y
         gensvm.args$verbose <- if(verbose>1) 1 else 0
         if (verbose > 1)

@@ -5,13 +5,15 @@
 \alias{predict.gensvm}
 \title{Predict class labels with the GenSVM model}
 \usage{
-\method{predict}{gensvm}(fit, x.test, ...)
+\method{predict}{gensvm}(fit, newdata, add.rownames = FALSE, ...)
 }
 \arguments{
 \item{fit}{Fitted \code{gensvm} object}
 
-\item{x.test}{Matrix of new values for \code{x} for which predictions need 
-to be made.}
+\item{newdata}{Matrix of new data for which predictions need to be made.}
+
+\item{add.rownames}{add the rownames from the training data to the 
+predictions}
 
 \item{\dots}{further arguments are ignored}
 }

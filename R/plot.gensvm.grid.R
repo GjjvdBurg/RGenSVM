@@ -5,7 +5,6 @@
 #' \code{\link{plot.gensvm}} for more information.
 #'
 #' @param grid A \code{gensvm.grid} object trained with refit=TRUE
-#' @param x the dataset to plot
 #' @param ... further arguments are passed to the plot function
 #'
 #' @return returns the object passed as input
@@ -32,12 +31,12 @@
 #' grid <- gensvm.grid(x, y)
 #' plot(grid, x)
 #'
-plot.gensvm.grid <- function(grid, x, ...)
+plot.gensvm.grid <- function(grid, ...)
 {
     if (is.null(grid$best.estimator)) {
         cat("Error: Can't plot, the best.estimator element is NULL\n")
         return
     }
     fit <- grid$best.estimator
-    return(plot(fit, x, ...))
+    return(plot(fit, ...))
 }

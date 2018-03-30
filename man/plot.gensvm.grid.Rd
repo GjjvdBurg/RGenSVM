@@ -4,14 +4,14 @@
 \alias{plot.gensvm.grid}
 \title{Plot the simplex space of the best fitted model in the GenSVMGrid}
 \usage{
-\method{plot}{gensvm.grid}(grid, x, ...)
+\method{plot}{gensvm.grid}(grid, ...)
 }
 \arguments{
 \item{grid}{A \code{gensvm.grid} object trained with refit=TRUE}
 
-\item{x}{the dataset to plot}
-
 \item{...}{further arguments are passed to the plot function}
+
+\item{x}{the dataset to plot}
 }
 \value{
 returns the object passed as input
