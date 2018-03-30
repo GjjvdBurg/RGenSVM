@@ -4,7 +4,10 @@
 #' with the given parameters. See the package documentation 
 #' (\code{\link{gensvm-package}}) for more general information about GenSVM.
 #'
-#' @param X data matrix with the predictors
+#' @param x data matrix with the predictors. \cr\cr
+#' Note that for SVMs categorical features should be converted to binary dummy 
+#' features. This can be done with using the \code{\link{model.matrix}} 
+#' function (i.e. \code{model.matrix( ~ var - 1)}).
 #' @param y class labels
 #' @param p parameter for the L_p norm of the loss function (1.0 <= p <= 2.0)
 #' @param lambda regularization parameter for the loss function (lambda > 0)
@@ -56,9 +59,6 @@
 #' \item{n.iter}{Number of iterations performed in training}
 #' \item{n.support}{Number of support vectors in the final model}
 #' \item{training.time}{Total training time}
-#' \item{X.train}{When training with nonlinear kernels, the training data is 
-#' needed to perform prediction. For these kernels it is therefore stored in 
-#' the fitted model.}
 #'
 #' @note
 #' This function returns partial results when the computation is interrupted by 
@@ -182,8 +182,6 @@ gensvm <- function(X, y, p=1.0, lambda=1e-8, kappa=0.0, epsilon=1e-6,
                    classes = classes, V = out$V, n.iter = out$n.iter, 
                    n.support = out$n.support, 
                    training.time = out$training.time,
-                   X.train = if(kernel == 'linear') NULL else X,
-                   feature.names = colnames(X))
     class(object) <- "gensvm"
 
     return(object)

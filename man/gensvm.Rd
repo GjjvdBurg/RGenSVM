@@ -4,13 +4,16 @@
 \alias{gensvm}
 \title{Fit the GenSVM model}
 \usage{
-gensvm(X, y, p = 1, lambda = 1e-08, kappa = 0, epsilon = 1e-06,
+gensvm(x, y, p = 1, lambda = 1e-08, kappa = 0, epsilon = 1e-06,
   weights = "unit", kernel = "linear", gamma = "auto", coef = 1,
   degree = 2, kernel.eigen.cutoff = 1e-08, verbose = FALSE,
   random.seed = NULL, max.iter = 1e+08, seed.V = NULL)
 }
 \arguments{
-\item{X}{data matrix with the predictors}
+\item{x}{data matrix with the predictors. \cr\cr
+Note that for SVMs categorical features should be converted to binary dummy 
+features. This can be done with using the \code{\link{model.matrix}} 
+function (i.e. \code{model.matrix( ~ var - 1)}).}
 
 \item{y}{class labels}
 
@@ -77,9 +80,6 @@ eigendecomposition of the kernel matrix.}
 \item{n.iter}{Number of iterations performed in training}
 \item{n.support}{Number of support vectors in the final model}
 \item{training.time}{Total training time}
-\item{X.train}{When training with nonlinear kernels, the training data is 
-needed to perform prediction. For these kernels it is therefore stored in 
-the fitted model.}
 }
 \description{
 Fits the Generalized Multiclass Support Vector Machine model 
