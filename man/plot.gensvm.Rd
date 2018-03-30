@@ -33,7 +33,7 @@ bounds will be used for the horizontal axis.}
 bounds will be used for the vertical axis and the value of center.plot will 
 be ignored}
 
-\item{...}{further arguments are ignored}
+\item{...}{further arguments are passed to the builtin plot() function}
 }
 \value{
 returns the object passed as input

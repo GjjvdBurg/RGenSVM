@@ -20,7 +20,7 @@
 #' @param ylim allows the user to force certain plot limits. If set, these 
 #' bounds will be used for the vertical axis and the value of center.plot will 
 #' be ignored
-#' @param ... further arguments are ignored
+#' @param ... further arguments are passed to the builtin plot() function
 #'
 #' @return returns the object passed as input
 #'
@@ -151,10 +151,10 @@ plot.gensvm <- function(fit, x, y.true=NULL, with.margins=TRUE,
         if (is.null(ylim))
             ylim <- c(min(min(S[, 2]), -0.75), max(max(S[, 2]), 1.2))
         plot(S[, 1], S[, 2], col=col.vector, pch=mark.vector, ylab='', xlab='', 
-             asp=1, xlim=xlim, ylim=ylim)
+             asp=1, xlim=xlim, ylim=ylim, ...)
     } else {
         plot(S[, 1], S[, 2], col=col.vector, pch=mark.vector, ylab='', 
-             xlab='', asp=1, xlim=xlim, ylim=ylim)
+             xlab='', asp=1, xlim=xlim, ylim=ylim, ...)
     }
 
     limits <- par("usr")
