@@ -3,6 +3,7 @@
 S3method(coef,gensvm)
 S3method(coef,gensvm.grid)
 S3method(fitted,gensvm)
+S3method(fitted,gensvm.grid)
 S3method(plot,gensvm)
 S3method(plot,gensvm.grid)
 S3method(predict,gensvm)
