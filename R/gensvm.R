@@ -182,7 +182,8 @@ gensvm <- function(X, y, p=1.0, lambda=1e-8, kappa=0.0, epsilon=1e-6,
                    classes = classes, V = out$V, n.iter = out$n.iter, 
                    n.support = out$n.support, 
                    training.time = out$training.time,
-                   X.train = if(kernel == 'linear') NULL else X)
+                   X.train = if(kernel == 'linear') NULL else X,
+                   feature.names = colnames(X))
     class(object) <- "gensvm"
 
     return(object)

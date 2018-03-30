@@ -2,7 +2,7 @@
 #'
 #' @description Returns the model coefficients of the GenSVM object
 #'
-#' @param object a \code{gensvm} object
+#' @param fit a \code{gensvm} object
 #' @param \dots further arguments are ignored
 #'
 #' @return The coefficients of the GenSVM model. This is a matrix of size
@@ -35,7 +35,10 @@
 #' fit <- gensvm(x, y)
 #' V <- coef(fit)
 #'
-coef.gensvm <- function(object, ...)
+coef.gensvm <- function(fit, ...)
 {
-    return(object$V)
+    V <- fit$V
+    name <- c("translation", fit$feature.names)
+    rownames(V) <- name
+    return(V)
 }
