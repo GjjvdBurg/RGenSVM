@@ -65,7 +65,7 @@ plot.gensvm <- function(fit, x, y.true=NULL, with.margins=TRUE,
 {
     if (!(fit$n.classes %in% c(2,3))) {
         cat("Error: Can only plot with 2 or 3 classes\n")
-        invisible(NULL)
+        return(invisible(NULL))
     }
 
     # Sanity check

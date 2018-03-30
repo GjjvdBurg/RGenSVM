@@ -138,10 +138,10 @@ gensvm <- function(X, y, p=1.0, lambda=1e-8, kappa=0.0, epsilon=1e-6,
     if (gamma == 'auto')
         gamma <- 1.0/n.features
 
-    if (!gensvm.validate.params(p=p, kappa=kappa, lambda=lambda, 
+    if (!gensvm.validate.params(p=p, kappa=kappa, lambda=lambda,
                                 epsilon=epsilon, gamma=gamma, weights=weights,
                                 kernel=kernel))
-        invisible(NULL)
+        return(invisible(NULL))
 
     # Convert weights to index
     weight.idx <- which(c("unit", "group") == weights)
