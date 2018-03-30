@@ -227,7 +227,7 @@ gensvm.grid <- function(X, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3,
         gensvm.args <- as.list(best.params)
         gensvm.args$X <- X
         gensvm.args$y <- y
-        gensvm.args$verbose <- verbose
+        gensvm.args$verbose <- if(verbose>1) 1 else 0
         if (verbose > 1)
             cat("Refitting with best parameters ...\n")
         best.estimator <- do.call(gensvm, gensvm.args)
