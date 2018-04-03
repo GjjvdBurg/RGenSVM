@@ -225,6 +225,11 @@ gensvm.grid <- function(x, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3,
 
     if (refit && !is.na(best.index)) {
         gensvm.args <- as.list(best.params)
+        # Stupid factors...
+        if ("weights" %in% names(gensvm.args))
+            gensvm.args$weights <- as.character(gensvm.args$weights)
+        if ("kernel" %in% names(gensvm.args))
+            gensvm.args$kernel <- as.character(gensvm.args$kernel)
         gensvm.args$x <- x
         gensvm.args$y <- y
         gensvm.args$verbose <- if(verbose>1) 1 else 0
