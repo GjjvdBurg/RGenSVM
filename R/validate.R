@@ -64,7 +64,7 @@ gensvm.param.conditions <- function()
         lambda=function(x) {x > 0.0 },
         epsilon=function(x) { x > 0.0 },
         gamma=function(x) { x != 0.0 },
-        weights=function(x) { x %in% c("unit", "group") },
+        weights=function(x) { x %in% c("raw", "unit", "group") },
         kernel=function(x) { x %in% c("linear", "poly", "rbf", "sigmoid") }
         )
 }

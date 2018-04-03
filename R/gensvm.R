@@ -139,13 +139,21 @@ gensvm <- function(x, y, p=1.0, lambda=1e-8, kappa=0.0, epsilon=1e-6,
     if (gamma == 'auto')
         gamma <- 1.0/n.features
 
+    raw.weights <- if (is.character(weights)) NULL else weights
+    weights <- if (is.character(weights)) weights else "raw"
+
+    if (weights == "raw" && length(raw.weights) != n.objects) {
+        cat("Error: length of weights vector unequal to number of objects\n")
+        return(invisible(NULL))
+    }
+
     if (!gensvm.validate.params(p=p, kappa=kappa, lambda=lambda,
                                 epsilon=epsilon, gamma=gamma, weights=weights,
                                 kernel=kernel))
         return(invisible(NULL))
 
     # Convert weights to index
-    weight.idx <- which(c("unit", "group") == weights)
+    weight.idx <- which(c("raw", "unit", "group") == weights) - 1
 
     # Convert kernel to index (remember off-by-one for R vs. C)
     kernel.idx <- which(c("linear", "poly", "rbf", "sigmoid") == kernel) - 1
@@ -162,6 +170,7 @@ gensvm <- function(x, y, p=1.0, lambda=1e-8, kappa=0.0, epsilon=1e-6,
                   kappa,
                   epsilon,
                   weight.idx,
+                  raw.weights,
                   as.integer(kernel.idx),
                   gamma,
                   coef,

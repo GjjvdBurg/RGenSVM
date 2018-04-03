@@ -37,10 +37,11 @@
 
 SEXP R_gensvm_train( SEXP R_X, SEXP R_y, SEXP R_p, SEXP R_lambda, 
 		SEXP R_kappa, SEXP R_epsilon, SEXP R_weight_idx, 
-		SEXP R_kernel_idx, SEXP R_gamma, SEXP R_coef, SEXP R_degree, 
-		SEXP R_kernel_eigen_cutoff, SEXP R_verbose, SEXP R_max_iter, 
-		SEXP R_random_seed, SEXP R_seed_V, SEXP R_seed_rows, 
-		SEXP R_seed_cols, SEXP R_n, SEXP R_m, SEXP R_K);
+		SEXP R_raw_weights, SEXP R_kernel_idx, SEXP R_gamma, 
+		SEXP R_coef, SEXP R_degree, SEXP R_kernel_eigen_cutoff, 
+		SEXP R_verbose, SEXP R_max_iter, SEXP R_random_seed, 
+		SEXP R_seed_V, SEXP R_seed_rows, SEXP R_seed_cols, SEXP R_n, 
+		SEXP R_m, SEXP R_K);
 SEXP R_gensvm_predict(SEXP R_Xtest, SEXP R_V, SEXP R_n, SEXP R_m, SEXP R_K);
 SEXP R_gensvm_predict_kernels(
 		SEXP R_Xtest, SEXP R_Xtrain, SEXP R_V, SEXP R_V_row,
@@ -63,7 +64,7 @@ struct GenData *_build_gensvm_data(double *X, int *y, int n, int m, int K);
 // Start R package stuff
 
 R_CallMethodDef callMethods[] = {
-	{"R_gensvm_train", (DL_FUNC) &R_gensvm_train, 21},
+	{"R_gensvm_train", (DL_FUNC) &R_gensvm_train, 22},
 	{"R_gensvm_predict", (DL_FUNC) &R_gensvm_predict, 5},
 	{"R_gensvm_predict_kernels", (DL_FUNC) &R_gensvm_predict_kernels, 14},
 	{"R_gensvm_plotdata_kernels", (DL_FUNC) &R_gensvm_plotdata_kernels, 14},
@@ -171,6 +172,7 @@ SEXP R_gensvm_train(
 		SEXP R_kappa,
 		SEXP R_epsilon,
 		SEXP R_weight_idx,
+		SEXP R_raw_weights,
 		SEXP R_kernel_idx,
 		SEXP R_gamma,
 		SEXP R_coef,
@@ -194,6 +196,7 @@ SEXP R_gensvm_train(
 	double kappa = *REAL(R_kappa);
 	double epsilon = *REAL(R_epsilon);
 	int weight_idx = *INTEGER(R_weight_idx);
+	double *raw_weights = isNull(R_raw_weights) ? NULL : REAL(R_raw_weights);
 	int kernel_idx = *INTEGER(R_kernel_idx);
 	double gamma = *REAL(R_gamma);
 	double coef = *REAL(R_coef);
@@ -217,6 +220,9 @@ SEXP R_gensvm_train(
 	double value;
 
 	// Set model parameters from function input arguments
+	model->n = n;
+	model->m = m;
+	model->K = K;
 	model->p = p;
 	model->lambda = lambda;
 	model->kappa = kappa;
@@ -229,6 +235,11 @@ SEXP R_gensvm_train(
 	model->kernel_eigen_cutoff = kernel_eigen_cutoff;
 	model->max_iter = max_iter;
 	model->seed = random_seed;
+
+	if (raw_weights != NULL) {
+		model->rho = Calloc(double, n);
+		for (i=0; i<n; i++) model->rho[i] = raw_weights[i];
+	}
 
 	if (seed_V != NULL) {
 		seed_model = gensvm_init_model();
