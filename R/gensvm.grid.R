@@ -208,8 +208,8 @@ gensvm.grid <- function(x, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3,
                  as.integer(n.classes)
                  )
 
-    cv.results <- gensvm.cv.results(results, param.grid, cv.idx, 
-                                    y.clean, scoring, 
+    cv.results <- gensvm.cv.results(results, param.grid, cv.idx, y.clean, 
+                                    scoring, 
                                     return.train.score=return.train.score)
 
     best.index <- which.min(cv.results$rank.test.score)[1]

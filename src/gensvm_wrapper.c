@@ -584,11 +584,6 @@ SEXP R_gensvm_grid(
 	long *cv_idx = NULL;
 	double val, total_time;
 
-	// Check input
-	if (df_cols < 9) {
-		// TODO: Raise error to R
-	}
-
 	// set verbosity
 	_set_verbosity(verbosity);
 
