@@ -11,8 +11,8 @@ gensvm(x, y, p = 1, lambda = 1e-08, kappa = 0, epsilon = 1e-06,
 }
 \arguments{
 \item{x}{data matrix with the predictors. \cr\cr
-Note that for SVMs categorical features should be converted to binary dummy 
-features. This can be done with using the \code{\link{model.matrix}} 
+Note that for SVMs categorical features should be converted to binary dummy
+features. This can be done with using the \code{\link{model.matrix}}
 function (i.e. \code{model.matrix( ~ var - 1)}).}
 
 \item{y}{class labels}
@@ -21,15 +21,15 @@ function (i.e. \code{model.matrix( ~ var - 1)}).}
 
 \item{lambda}{regularization parameter for the loss function (lambda > 0)}
 
-\item{kappa}{parameter for the hinge function in the loss function (kappa > 
+\item{kappa}{parameter for the hinge function in the loss function (kappa >
 -1.0)}
 
-\item{weights}{type or vector of instance weights to use. Options are 'unit' 
-for unit weights and 'group' for group size correction weights (eq. 4 in the 
+\item{weights}{type or vector of instance weights to use. Options are 'unit'
+for unit weights and 'group' for group size correction weights (eq. 4 in the
 paper). Alternatively, a vector of weights can be provided.}
 
-\item{kernel}{the kernel type to use in the classifier. It must be one of 
-'linear', 'poly', 'rbf', or 'sigmoid'. See the section "Kernels in GenSVM" 
+\item{kernel}{the kernel type to use in the classifier. It must be one of
+'linear', 'poly', 'rbf', or 'sigmoid'. See the section "Kernels in GenSVM"
 in \code{\link{gensvm-package}} for more info.}
 
 \item{gamma}{kernel parameter for the rbf, polynomial, and sigmoid kernel.
@@ -39,24 +39,24 @@ If gamma is 'auto', then 1/n_features will be used.}
 
 \item{degree}{parameter for the polynomial kernel}
 
-\item{kernel.eigen.cutoff}{Cutoff point for the reduced eigendecomposition 
-used with kernel-GenSVM. Eigenvectors for which the ratio between their 
-corresponding eigenvalue and the largest eigenvalue is smaller than this 
+\item{kernel.eigen.cutoff}{Cutoff point for the reduced eigendecomposition
+used with kernel-GenSVM. Eigenvectors for which the ratio between their
+corresponding eigenvalue and the largest eigenvalue is smaller than this
 cutoff value will be dropped.}
 
 \item{verbose}{Turn on verbose output and fit progress}
 
-\item{random.seed}{Seed for the random number generator (useful for 
+\item{random.seed}{Seed for the random number generator (useful for
 reproducible output)}
 
 \item{max.iter}{Maximum number of iterations of the optimization algorithm.}
 
-\item{seed.V}{Matrix to warm-start the optimization algorithm. This is 
-typically the output of \code{coef(fit)}. Note that this function will 
+\item{seed.V}{Matrix to warm-start the optimization algorithm. This is
+typically the output of \code{coef(fit)}. Note that this function will
 silently drop seed.V if the dimensions don't match the provided data.}
 }
 \value{
-A "gensvm" S3 object is returned for which the print, predict, coef, 
+A "gensvm" S3 object is returned for which the print, predict, coef,
 and plot methods are available. It has the following items:
 \item{call}{The call that was used to construct the model.}
 \item{p}{The value of the lp norm in the loss function}
@@ -68,7 +68,7 @@ and plot methods are available. It has the following items:
 \item{gamma}{The value of the gamma parameter of the kernel, if applicable}
 \item{coef}{The value of the coef parameter of the kernel, if applicable}
 \item{degree}{The degree of the kernel, if applicable}
-\item{kernel.eigen.cutoff}{The cutoff value of the reduced 
+\item{kernel.eigen.cutoff}{The cutoff value of the reduced
 eigendecomposition of the kernel matrix.}
 \item{verbose}{Whether or not the model was fitted with progress output}
 \item{random.seed}{The random seed used to seed the model.}
@@ -83,12 +83,12 @@ eigendecomposition of the kernel matrix.}
 \item{training.time}{Total training time}
 }
 \description{
-Fits the Generalized Multiclass Support Vector Machine model 
-with the given parameters. See the package documentation 
+Fits the Generalized Multiclass Support Vector Machine model
+with the given parameters. See the package documentation
 (\code{\link{gensvm-package}}) for more general information about GenSVM.
 }
 \note{
-This function returns partial results when the computation is interrupted by 
+This function returns partial results when the computation is interrupted by
 the user.
 }
 \examples{
@@ -121,17 +121,16 @@ all.equal(coef(fit), coef(fit2))
 
 
 }
+\references{
+Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized
+Multiclass Support Vector Machine}, Journal of Machine Learning Research,
+17(225):1--42. URL \url{http://jmlr.org/papers/v17/14-526.html}.
+}
+\seealso{
+\code{\link{coef}}, \code{\link{print}}, \code{\link{predict}},
+\code{\link{plot}}, \code{\link{gensvm.grid}}, \code{\link{gensvm-package}}
+}
 \author{
 Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
 Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
 }
-\references{
-Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized 
-Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
-17(225):1--42. URL \url{http://jmlr.org/papers/v17/14-526.html}.
-}
-\seealso{
-\code{\link{coef}}, \code{\link{print}}, \code{\link{predict}}, 
-\code{\link{plot}}, \code{\link{gensvm.grid}}, \code{\link{gensvm-package}}
-}
-

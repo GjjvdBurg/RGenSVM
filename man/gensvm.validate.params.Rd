@@ -8,4 +8,3 @@ gensvm.validate.params(p = NULL, kappa = NULL, lambda = NULL,
   epsilon = NULL, gamma = NULL, weights = NULL, kernel = NULL, ...)
 }
 \keyword{internal}
-

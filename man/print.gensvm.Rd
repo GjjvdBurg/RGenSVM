@@ -31,10 +31,6 @@ fit <- gensvm(x, y)
 predict(print(fit), x)
 
 }
-\author{
-Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
-Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
-}
 \references{
 Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized 
 Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
@@ -44,4 +40,7 @@ Multiclass Support Vector Machine}, Journal of Machine Learning Research,
 \code{\link{gensvm}}, \code{\link{predict.gensvm}}, 
 \code{\link{plot.gensvm}}, \code{\link{gensvm-package}}
 }
-
+\author{
+Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
+Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
+}

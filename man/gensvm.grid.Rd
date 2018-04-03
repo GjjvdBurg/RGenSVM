@@ -126,6 +126,7 @@ Note that this function reorders the parameter grid to make the warm starts
 as efficient as possible, which is why the param.grid in the result will not 
 be the same as the param.grid in the input.
 }
+
 \examples{
 x <- iris[, -5]
 y <- iris[, 5]
@@ -150,10 +151,6 @@ pg <- expand.grid(kernel=c('rbf'), gamma=c(1e-2, 1e-1, 1, 1e1, 1e2),
 grid <- gensvm.grid(x, y, param.grid=pg, verbose=2)
 
 }
-\author{
-Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
-Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
-}
 \references{
 Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized 
 Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
@@ -164,4 +161,7 @@ Multiclass Support Vector Machine}, Journal of Machine Learning Research,
 \code{\link{plot.gensvm.grid}}, \code{\link{gensvm}}, 
 \code{\link{gensvm-package}}
 }
-
+\author{
+Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
+Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
+}

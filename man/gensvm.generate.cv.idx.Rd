@@ -10,4 +10,3 @@ gensvm.generate.cv.idx(n, folds)
 This function generates a vector of length \code{n} with values from 0 to 
 \code{folds-1} to mark train and test splits.
 }
-

@@ -17,10 +17,6 @@ performance on most datasets.
 Note that this grid is only tested to work well in combination with the 
 linear kernel.
 }
-\author{
-Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
-Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
-}
 \references{
 Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized 
 Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
@@ -30,4 +26,7 @@ Multiclass Support Vector Machine}, Journal of Machine Learning Research,
 \code{\link{gensvm.grid}}, \code{\link{gensvm.load.small.grid}}, 
 \code{\link{gensvm.load.full.grid}}.
 }
-
+\author{
+Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
+Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
+}

@@ -14,4 +14,3 @@ This function computes the ranks for the values in an array. The highest
 value gets the smallest rank. Ties are broken by assigning the smallest 
 value.
 }
-

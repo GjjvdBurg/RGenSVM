@@ -10,8 +10,6 @@
 \item{grid}{A \code{gensvm.grid} object trained with refit=TRUE}
 
 \item{...}{further arguments are passed to the plot function}
-
-\item{x}{the dataset to plot}
 }
 \value{
 returns the object passed as input
@@ -29,10 +27,6 @@ grid <- gensvm.grid(x, y)
 plot(grid, x)
 
 }
-\author{
-Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
-Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
-}
 \references{
 Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized 
 Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
@@ -42,4 +36,7 @@ Multiclass Support Vector Machine}, Journal of Machine Learning Research,
 \code{\link{plot.gensvm}}, \code{\link{gensvm.grid}}, 
 \code{\link{predict.gensvm.grid}}, \code{\link{gensvm-package}}
 }
-
+\author{
+Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
+Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
+}
