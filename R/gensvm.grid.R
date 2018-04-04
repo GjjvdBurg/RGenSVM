@@ -131,7 +131,7 @@
 #' y <- iris[, 5]
 #'
 #' # use the default parameter grid
-#' grid <- gensvm.grid(x, y)
+#' grid <- gensvm.grid(x, y, verbose=TRUE)
 #'
 #' # use a smaller parameter grid
 #' pg <- expand.grid(p=c(1.0, 1.5, 2.0), kappa=c(-0.9, 1.0), epsilon=c(1e-3))
