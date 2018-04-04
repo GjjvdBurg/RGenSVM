@@ -4,13 +4,13 @@
 \alias{predict.gensvm.grid}
 \title{Predict class labels from the GenSVMGrid class}
 \usage{
-\method{predict}{gensvm.grid}(grid, newx, ...)
+\method{predict}{gensvm.grid}(object, newdata, ...)
 }
 \arguments{
-\item{grid}{A \code{gensvm.grid} object trained with \code{refit=TRUE}}
+\item{object}{A \code{gensvm.grid} object trained with \code{refit=TRUE}}
 
-\item{newx}{Matrix of new values for \code{x} for which predictions need to 
-be computed.}
+\item{newdata}{Matrix of new values for \code{x} for which predictions need 
+to be computed.}
 
 \item{\dots}{further arguments are passed to predict.gensvm()}
 }

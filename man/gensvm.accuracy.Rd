@@ -11,6 +11,13 @@ gensvm.accuracy(y.true, y.pred)
 
 \item{y.pred}{vector of predicted labels}
 }
+\value{
+The accuracy as a value in the range [0.0, 1.0]
+}
+\description{
+Compute the accuracy score between the true labels and the 
+predicted labels.
+}
 \examples{
 x <- iris[, -5]
 y <- iris[, 5]

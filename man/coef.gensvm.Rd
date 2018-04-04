@@ -4,10 +4,10 @@
 \alias{coef.gensvm}
 \title{Get the coefficients of the fitted GenSVM model}
 \usage{
-\method{coef}{gensvm}(fit, ...)
+\method{coef}{gensvm}(object, ...)
 }
 \arguments{
-\item{fit}{a \code{gensvm} object}
+\item{object}{a \code{gensvm} object}
 
 \item{\dots}{further arguments are ignored}
 }

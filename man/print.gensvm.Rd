@@ -4,10 +4,10 @@
 \alias{print.gensvm}
 \title{Print the fitted GenSVM model}
 \usage{
-\method{print}{gensvm}(fit, ...)
+\method{print}{gensvm}(x, ...)
 }
 \arguments{
-\item{fit}{A \code{gensvm} object to print}
+\item{x}{A \code{gensvm} object to print}
 
 \item{\dots}{further arguments are ignored}
 }

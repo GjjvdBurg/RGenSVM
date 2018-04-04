@@ -18,6 +18,12 @@
 #' of 0.25 will be used.
 #' @param shuffle shuffle the rows or not
 #' @param random.state seed for the random number generator (int)
+#' @param return.idx whether or not to return the indices in the output
+#'
+#' @return a list with \code{x.train} and \code{x.test} splits of the \code{x} 
+#' array provided. If \code{y} is provided, also \code{y.train} and 
+#' \code{y.test}. If \code{return.idx} is TRUE, also \code{idx.train} and 
+#' \code{idx.test}.
 #'
 #' @author
 #' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr

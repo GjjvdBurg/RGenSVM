@@ -6,4 +6,12 @@
 \usage{
 gensvm.validate.param.grid(df)
 }
+\value{
+TRUE if all values pass their respective conditions, FALSE 
+otherwise.
+}
+\description{
+Internal function to validate all parameters in a parameter 
+grid.
+}
 \keyword{internal}

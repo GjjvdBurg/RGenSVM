@@ -4,10 +4,10 @@
 \alias{print.gensvm.grid}
 \title{Print the fitted GenSVMGrid model}
 \usage{
-\method{print}{gensvm.grid}(grid, ...)
+\method{print}{gensvm.grid}(x, ...)
 }
 \arguments{
-\item{grid}{a \code{gensvm.grid} object to print}
+\item{x}{a \code{gensvm.grid} object to print}
 
 \item{\dots}{further arguments are ignored}
 }

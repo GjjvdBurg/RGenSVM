@@ -4,10 +4,10 @@
 \alias{predict.gensvm}
 \title{Predict class labels with the GenSVM model}
 \usage{
-\method{predict}{gensvm}(fit, newdata, add.rownames = FALSE, ...)
+\method{predict}{gensvm}(object, newdata, add.rownames = FALSE, ...)
 }
 \arguments{
-\item{fit}{Fitted \code{gensvm} object}
+\item{object}{Fitted \code{gensvm} object}
 
 \item{newdata}{Matrix of new data for which predictions need to be made.}
 

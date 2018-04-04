@@ -362,11 +362,29 @@ gensvm.load.small.grid <- function()
 }
 
 
-#' Generate a vector of cross-validation indices
+#' @title Generate a vector of cross-validation indices
 #'
+#' @description
 #' This function generates a vector of length \code{n} with values from 0 to 
 #' \code{folds-1} to mark train and test splits.
 #'
+#' @param n the number of instances
+#' @param folds the number of cross validation folds
+#'
+#' @return an array of length \code{n} with values in the range [0, folds-1] 
+#' indicating the test fold of each instance.
+#'
+#' @author
+#' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
+#' Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
+#'
+#' @references
+#' Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized 
+#' Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
+#' 17(225):1--42. URL \url{http://jmlr.org/papers/v17/14-526.html}.
+#'
+#' @seealso
+#' \code{\link{gensvm.grid}}
 gensvm.generate.cv.idx <- function(n, folds)
 {
     cv.idx <- matrix(0, n, 1)
@@ -572,12 +590,13 @@ gensvm.expand.param.grid <- function(pg, n.features)
 
 #' @title Compute the ranks for the numbers in a given vector
 #'
-#' @details
-#' This function computes the ranks for the values in an array. The highest 
-#' value gets the smallest rank. Ties are broken by assigning the smallest 
-#' value.
+#' @description This function computes the ranks for the values in an array. 
+#' The highest value gets the smallest rank. Ties are broken by assigning the 
+#' smallest value. The smallest rank is 1.
 #'
 #' @param x array of numeric values
+#'
+#' @return array with the ranks of the values in the input array.
 #'
 gensvm.rank.score <- function(x)
 {

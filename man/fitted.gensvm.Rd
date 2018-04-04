@@ -2,13 +2,12 @@
 % Please edit documentation in R/fitted.gensvm.R
 \name{fitted.gensvm}
 \alias{fitted.gensvm}
-\alias{fitted}
 \title{Show fitted labels for the GenSVM model}
 \usage{
-\method{fitted}{gensvm}(fit, ...)
+\method{fitted}{gensvm}(object, ...)
 }
 \arguments{
-\item{fit}{Fitted \code{gensvm} object}
+\item{object}{Fitted \code{gensvm} object}
 
 \item{\dots}{further arguments are passed to predict}
 }

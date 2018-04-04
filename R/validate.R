@@ -1,7 +1,14 @@
 #' @title [internal] Validate parameters
 #'
+#' @description Internal function used to validate the parameters passed to the 
+#' gensvm() function.
+#'
+#' @return TRUE if all values pass their respective conditions, FALSE 
+#' otherwise.
+#'
 #' @export
 #' @keywords internal
+#'
 gensvm.validate.params <- function(p=NULL, kappa=NULL, lambda=NULL, 
                                    epsilon=NULL, gamma=NULL, weights=NULL, 
                                    kernel=NULL, ...)
@@ -26,8 +33,15 @@ gensvm.validate.params <- function(p=NULL, kappa=NULL, lambda=NULL,
 
 #' @title [internal] Validate parameter grid
 #'
+#' @description Internal function to validate all parameters in a parameter 
+#' grid.
+#'
+#' @return TRUE if all values pass their respective conditions, FALSE 
+#' otherwise.
+#'
 #' @export
 #' @keywords internal
+#'
 gensvm.validate.param.grid <- function(df)
 {
     expected.colnames <- c("kernel", "coef", "degree", "gamma", "weights", 

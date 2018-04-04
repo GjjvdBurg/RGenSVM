@@ -4,7 +4,7 @@
 \alias{gensvm.refit}
 \title{Train an already fitted model on new data}
 \usage{
-gensvm.refit(fit, X, y, p = NULL, lambda = NULL, kappa = NULL,
+gensvm.refit(fit, x, y, p = NULL, lambda = NULL, kappa = NULL,
   epsilon = NULL, weights = NULL, kernel = NULL, gamma = NULL,
   coef = NULL, degree = NULL, kernel.eigen.cutoff = NULL,
   max.iter = NULL, verbose = NULL, random.seed = NULL)
@@ -12,15 +12,58 @@ gensvm.refit(fit, X, y, p = NULL, lambda = NULL, kappa = NULL,
 \arguments{
 \item{fit}{Fitted \code{gensvm} object}
 
-\item{X}{Data matrix of the new data}
+\item{x}{Data matrix of the new data}
 
 \item{y}{Label vector of the new data}
 
-\item{verbose}{Turn on verbose output and fit progress. If NULL (the 
-default) the value from the fitted model is chosen.}
+\item{p}{if NULL use the value from \code{fit} in the new model, otherwise 
+override with this value.}
+
+\item{lambda}{if NULL use the value from \code{fit} in the new model, 
+otherwise override with this value.}
+
+\item{kappa}{if NULL use the value from \code{fit} in the new model, 
+otherwise override with this value.}
+
+\item{epsilon}{if NULL use the value from \code{fit} in the new model, 
+otherwise override with this value.}
+
+\item{weights}{if NULL use the value from \code{fit} in the new model, 
+otherwise override with this value.}
+
+\item{kernel}{if NULL use the value from \code{fit} in the new model, 
+otherwise override with this value.}
+
+\item{gamma}{if NULL use the value from \code{fit} in the new model, 
+otherwise override with this value.}
+
+\item{coef}{if NULL use the value from \code{fit} in the new model, 
+otherwise override with this value.}
+
+\item{degree}{if NULL use the value from \code{fit} in the new model, 
+otherwise override with this value.}
+
+\item{kernel.eigen.cutoff}{if NULL use the value from \code{fit} in the new 
+model, otherwise override with this value.}
+
+\item{max.iter}{if NULL use the value from \code{fit} in the new model, 
+otherwise override with this value.}
+
+\item{verbose}{if NULL use the value from \code{fit} in the new model, 
+otherwise override with this value.}
+
+\item{random.seed}{if NULL use the value from \code{fit} in the new model, 
+otherwise override with this value.}
 }
 \value{
 a new fitted \code{gensvm} model
+}
+\description{
+This function can be used to train an existing model on new 
+data or fit an existing model with slightly different parameters. It is 
+useful for retraining without having to copy all the parameters over. One 
+common application for this is to refit the best model found by a grid 
+search, as illustrated in the examples.
 }
 \examples{
 x <- iris[, -5]

@@ -7,4 +7,12 @@
 gensvm.validate.params(p = NULL, kappa = NULL, lambda = NULL,
   epsilon = NULL, gamma = NULL, weights = NULL, kernel = NULL, ...)
 }
+\value{
+TRUE if all values pass their respective conditions, FALSE 
+otherwise.
+}
+\description{
+Internal function used to validate the parameters passed to the 
+gensvm() function.
+}
 \keyword{internal}

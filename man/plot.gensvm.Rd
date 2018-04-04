@@ -4,15 +4,18 @@
 \alias{plot.gensvm}
 \title{Plot the simplex space of the fitted GenSVM model}
 \usage{
-\method{plot}{gensvm}(fit, y, x.test = NULL, with.margins = TRUE,
+\method{plot}{gensvm}(x, labels, newdata = NULL, with.margins = TRUE,
   with.shading = TRUE, with.legend = TRUE, center.plot = TRUE,
   xlim = NULL, ylim = NULL, ...)
 }
 \arguments{
-\item{fit}{A fitted \code{gensvm} object}
+\item{x}{A fitted \code{gensvm} object}
 
-\item{y}{the labels to color points with (if NULL the predicted labels are 
-used)}
+\item{labels}{the labels to color points with. If this is omitted the 
+predicted labels are used.}
+
+\item{newdata}{the dataset to plot. If this is NULL the training data is 
+used.}
 
 \item{with.margins}{plot the margins}
 
@@ -31,16 +34,14 @@ bounds will be used for the vertical axis and the value of center.plot will
 be ignored}
 
 \item{...}{further arguments are passed to the builtin plot() function}
-
-\item{x}{the dataset to plot (if NULL the training data is used)}
 }
 \value{
 returns the object passed as input
 }
 \description{
 This function creates a plot of the simplex space for a fitted 
-GenSVM model and the given data set, as long as the dataset consists of only 
-3 classes.  For more than 3 classes, the simplex space is too high 
+GenSVM model and the given data set. This function works for dataset with 
+two or three classes. For more than 3 classes, the simplex space is too high 
 dimensional to easily visualize.
 }
 \examples{
@@ -59,8 +60,14 @@ plot(fit, y)
 # plot only misclassified samples
 x.mis <- x[predict(fit) != y, ]
 y.mis.true <- y[predict(fit) != y]
-plot(fit, x.test=x.mis)
-plot(fit, y.mis.true, x.test=x.mis)
+plot(fit, newdata=x.mis)
+plot(fit, y.mis.true, newdata=x.mis)
+
+# plot a 2-d model
+xx <- x[y \%in\% c('versicolor', 'virginica'), ]
+yy <- y[y \%in\% c('versicolor', 'virginica')]
+fit <- gensvm(xx, yy, kernel='rbf', max.iter=5000)
+plot(fit)
 
 }
 \references{

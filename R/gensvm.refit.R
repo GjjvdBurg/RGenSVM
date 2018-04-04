@@ -1,16 +1,40 @@
 #' @title Train an already fitted model on new data
 #'
-#' @title This function can be used to train an existing model on new data or 
-#' fit an existing model with slightly different parameters. It is useful for 
-#' retraining without having to copy all the parameters over. One common 
-#' application for this is to refit the best model found by a grid search, as 
-#' illustrated in the examples.
+#' @description This function can be used to train an existing model on new 
+#' data or fit an existing model with slightly different parameters. It is 
+#' useful for retraining without having to copy all the parameters over. One 
+#' common application for this is to refit the best model found by a grid 
+#' search, as illustrated in the examples.
 #'
 #' @param fit Fitted \code{gensvm} object
-#' @param X Data matrix of the new data
+#' @param x Data matrix of the new data
 #' @param y Label vector of the new data
-#' @param verbose Turn on verbose output and fit progress. If NULL (the 
-#' default) the value from the fitted model is chosen.
+#' @param p if NULL use the value from \code{fit} in the new model, otherwise 
+#' override with this value.
+#' @param lambda if NULL use the value from \code{fit} in the new model, 
+#' otherwise override with this value.
+#' @param kappa if NULL use the value from \code{fit} in the new model, 
+#' otherwise override with this value.
+#' @param epsilon if NULL use the value from \code{fit} in the new model, 
+#' otherwise override with this value.
+#' @param weights if NULL use the value from \code{fit} in the new model, 
+#' otherwise override with this value.
+#' @param kernel if NULL use the value from \code{fit} in the new model, 
+#' otherwise override with this value.
+#' @param gamma if NULL use the value from \code{fit} in the new model, 
+#' otherwise override with this value.
+#' @param coef if NULL use the value from \code{fit} in the new model, 
+#' otherwise override with this value.
+#' @param degree if NULL use the value from \code{fit} in the new model, 
+#' otherwise override with this value.
+#' @param kernel.eigen.cutoff if NULL use the value from \code{fit} in the new 
+#' model, otherwise override with this value.
+#' @param max.iter if NULL use the value from \code{fit} in the new model, 
+#' otherwise override with this value.
+#' @param verbose if NULL use the value from \code{fit} in the new model, 
+#' otherwise override with this value.
+#' @param random.seed if NULL use the value from \code{fit} in the new model, 
+#' otherwise override with this value.
 #'
 #' @return a new fitted \code{gensvm} model
 #'
@@ -50,7 +74,7 @@
 #' fit1 <- gensvm(x1, y1)
 #' fit2 <- gensvm.refit(fit1, x2, y2)
 #'
-gensvm.refit <- function(fit, X, y, p=NULL, lambda=NULL, kappa=NULL, 
+gensvm.refit <- function(fit, x, y, p=NULL, lambda=NULL, kappa=NULL, 
                          epsilon=NULL, weights=NULL, kernel=NULL, gamma=NULL, 
                          coef=NULL, degree=NULL, kernel.eigen.cutoff=NULL, 
                          max.iter=NULL, verbose=NULL, random.seed=NULL)
@@ -76,7 +100,7 @@ gensvm.refit <- function(fit, X, y, p=NULL, lambda=NULL, kappa=NULL,
     # after the call to gensvm().
     errfunc <- getOption('error')
     options(error=function() {})
-    newfit <- gensvm(X, y, p=p, lambda=lambda, kappa=kappa, epsilon=epsilon, 
+    newfit <- gensvm(x, y, p=p, lambda=lambda, kappa=kappa, epsilon=epsilon, 
                      weights=weights, kernel=kernel, gamma=gamma, coef=coef,
                      degree=degree, kernel.eigen.cutoff=kernel.eigen.cutoff,
                      verbose=verbose, max.iter=max.iter, seed.V=coef(fit))

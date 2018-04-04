@@ -1,8 +1,8 @@
 #' @title Plot the simplex space of the fitted GenSVM model
 #' 
 #' @description This function creates a plot of the simplex space for a fitted 
-#' GenSVM model and the given data set, as long as the dataset consists of only 
-#' 3 classes.  For more than 3 classes, the simplex space is too high 
+#' GenSVM model and the given data set. This function works for dataset with 
+#' two or three classes. For more than 3 classes, the simplex space is too high 
 #' dimensional to easily visualize.
 #'
 #' @param x A fitted \code{gensvm} object
@@ -60,8 +60,14 @@
 #' # plot only misclassified samples
 #' x.mis <- x[predict(fit) != y, ]
 #' y.mis.true <- y[predict(fit) != y]
-#' plot(fit, x.test=x.mis)
-#' plot(fit, y.mis.true, x.test=x.mis)
+#' plot(fit, newdata=x.mis)
+#' plot(fit, y.mis.true, newdata=x.mis)
+#'
+#' # plot a 2-d model
+#' xx <- x[y %in% c('versicolor', 'virginica'), ]
+#' yy <- y[y %in% c('versicolor', 'virginica')]
+#' fit <- gensvm(xx, yy, kernel='rbf', max.iter=5000)
+#' plot(fit)
 #'
 plot.gensvm <- function(x, labels, newdata=NULL, with.margins=TRUE, 
                         with.shading=TRUE, with.legend=TRUE, center.plot=TRUE, 

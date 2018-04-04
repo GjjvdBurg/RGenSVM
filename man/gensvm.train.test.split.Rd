@@ -27,6 +27,14 @@ of 0.25 will be used.}
 \item{shuffle}{shuffle the rows or not}
 
 \item{random.state}{seed for the random number generator (int)}
+
+\item{return.idx}{whether or not to return the indices in the output}
+}
+\value{
+a list with \code{x.train} and \code{x.test} splits of the \code{x} 
+array provided. If \code{y} is provided, also \code{y.train} and 
+\code{y.test}. If \code{return.idx} is TRUE, also \code{idx.train} and 
+\code{idx.test}.
 }
 \description{
 Often it is desirable to split a dataset into a training and 

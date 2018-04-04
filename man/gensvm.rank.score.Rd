@@ -9,8 +9,11 @@ gensvm.rank.score(x)
 \arguments{
 \item{x}{array of numeric values}
 }
-\details{
-This function computes the ranks for the values in an array. The highest 
-value gets the smallest rank. Ties are broken by assigning the smallest 
-value.
+\value{
+array with the ranks of the values in the input array.
+}
+\description{
+This function computes the ranks for the values in an array. 
+The highest value gets the smallest rank. Ties are broken by assigning the 
+smallest value. The smallest rank is 1.
 }

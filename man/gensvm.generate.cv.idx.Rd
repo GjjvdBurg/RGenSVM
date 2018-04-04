@@ -6,7 +6,28 @@
 \usage{
 gensvm.generate.cv.idx(n, folds)
 }
+\arguments{
+\item{n}{the number of instances}
+
+\item{folds}{the number of cross validation folds}
+}
+\value{
+an array of length \code{n} with values in the range [0, folds-1] 
+indicating the test fold of each instance.
+}
 \description{
 This function generates a vector of length \code{n} with values from 0 to 
 \code{folds-1} to mark train and test splits.
+}
+\references{
+Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized 
+Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
+17(225):1--42. URL \url{http://jmlr.org/papers/v17/14-526.html}.
+}
+\seealso{
+\code{\link{gensvm.grid}}
+}
+\author{
+Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
+Maintainer: Gerrit J.J. van den Burg <gertjanvandenburg@gmail.com>
 }

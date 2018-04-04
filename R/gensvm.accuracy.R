@@ -1,7 +1,12 @@
 #' @title Compute the accuracy score
 #'
+#' @description Compute the accuracy score between the true labels and the 
+#' predicted labels.
+#'
 #' @param y.true vector of true labels
 #' @param y.pred vector of predicted labels
+#'
+#' @return The accuracy as a value in the range [0.0, 1.0]
 #'
 #' @author
 #' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr

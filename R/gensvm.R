@@ -13,6 +13,9 @@
 #' @param lambda regularization parameter for the loss function (lambda > 0)
 #' @param kappa parameter for the hinge function in the loss function (kappa >
 #' -1.0)
+#' @param epsilon Stopping parameter for the optimization algorithm. The 
+#' optimization will stop if the relative change in the loss function is below 
+#' this value.
 #' @param weights type or vector of instance weights to use. Options are 'unit'
 #' for unit weights and 'group' for group size correction weights (eq. 4 in the
 #' paper). Alternatively, a vector of weights can be provided.
@@ -92,7 +95,7 @@
 #' fit <- gensvm(x, y)
 #'
 #' # fit and show progress
-#' fit <- gensvm(x, y, verbose=T)
+#' fit <- gensvm(x, y, verbose=TRUE)
 #'
 #' # fit with some changed parameters
 #' fit <- gensvm(x, y, lambda=1e-8)

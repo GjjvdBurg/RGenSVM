@@ -2,13 +2,12 @@
 % Please edit documentation in R/fitted.gensvm.grid.R
 \name{fitted.gensvm.grid}
 \alias{fitted.gensvm.grid}
-\alias{fitted}
 \title{Fitted labels for the GenSVMGrid class}
 \usage{
-\method{fitted}{gensvm.grid}(grid, ...)
+\method{fitted}{gensvm.grid}(object, ...)
 }
 \arguments{
-\item{grid}{A \code{gensvm.grid} object}
+\item{object}{A \code{gensvm.grid} object}
 
 \item{\dots}{further arguments are passed to fitted}
 }
