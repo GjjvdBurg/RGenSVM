@@ -96,6 +96,8 @@ void _set_verbosity(int verbosity)
 {
 	extern FILE *GENSVM_OUTPUT_FILE;
 	extern FILE *GENSVM_ERROR_FILE;
+	extern void (*gensvm_print_out)(const char *, ...);
+	extern void (*gensvm_print_err)(const char *, ...);
 
 	if (verbosity) {
 		gensvm_print_out = Rprintf;
