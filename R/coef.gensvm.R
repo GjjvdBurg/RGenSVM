@@ -42,7 +42,9 @@ coef.gensvm <- function(object, ...)
 {
     V <- object$V
     x <- eval.parent(object$call$x)
-    name <- c("translation", colnames(x))
-    rownames(V) <- name
+    if (!is.null(colnames(x)) && length(colnames(x)) == dim(V)[1]) {
+        name <- c("translation", colnames(x))
+        rownames(V) <- name
+    }
     return(V)
 }
