@@ -20,7 +20,10 @@
 #' \code{\link{gensvm.grid}}, \code{\link{gensvm-package}}
 #'
 #' @method coef gensvm.grid
+#'
 #' @export
+#'
+#' @importFrom stats coef
 #'
 #' @examples
 #' x <- iris[, -5]

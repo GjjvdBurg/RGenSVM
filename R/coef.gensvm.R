@@ -26,7 +26,10 @@
 #' \code{\link{predict.gensvm}}, \code{\link{gensvm-package}}
 #'
 #' @method coef gensvm
+#'
 #' @export
+#'
+#' @importFrom stats coef
 #'
 #' @examples
 #' x <- iris[, -5]

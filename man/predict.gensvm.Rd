@@ -2,7 +2,6 @@
 % Please edit documentation in R/predict.gensvm.R
 \name{predict.gensvm}
 \alias{predict.gensvm}
-\alias{predict}
 \title{Predict class labels with the GenSVM model}
 \usage{
 \method{predict}{gensvm}(fit, newdata, add.rownames = FALSE, ...)

@@ -28,7 +28,11 @@
 #' \code{\link{gensvm}}, \code{\link{predict.gensvm.grid}}, 
 #' \code{\link{plot.gensvm}}, \code{\link{gensvm-package}}
 #'
+#' @method predict gensvm.grid
+#'
 #' @export
+#'
+#' @importFrom stats predict
 #'
 #' @examples
 #' x <- iris[, -5]

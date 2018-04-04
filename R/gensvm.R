@@ -79,6 +79,9 @@
 #' \code{\link{plot}}, \code{\link{gensvm.grid}}, \code{\link{gensvm-package}}
 #'
 #' @export
+#'
+#' @importFrom stats runif
+#'
 #' @useDynLib gensvm_wrapper, .registration = TRUE
 #'
 #' @examples

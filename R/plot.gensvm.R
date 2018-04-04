@@ -37,7 +37,11 @@
 #' \code{\link{gensvm}}, \code{\link{gensvm-package}}
 #'
 #' @method plot gensvm
+#'
 #' @export
+#'
+#' @importFrom grDevices rgb
+#' @importFrom graphics legend par plot polygon segments
 #'
 #' @examples
 #' x <- iris[, -5]
