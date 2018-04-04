@@ -93,7 +93,8 @@ plot.gensvm <- function(x, labels, newdata=NULL, with.margins=TRUE,
         V <- coef(fit)
         Z <- cbind(matrix(1, dim(newdata)[1], 1), as.matrix(newdata))
         S <- Z %*% V
-        y.pred.orig <- predict(fit, newdata)
+        y.pred <- predict(fit, newdata)
+        y.pred.int <- match(y.pred, fit$classes)
     } else {
         kernels <- c("linear", "poly", "rbf", "sigmoid")
         kernel.idx <- which(kernels == fit$kernel) - 1
@@ -114,22 +115,14 @@ plot.gensvm <- function(x, labels, newdata=NULL, with.margins=TRUE,
                           fit$kernel.eigen.cutoff
                           )
         S <- plotdata$ZV
-        y.pred.orig <- plotdata$y.pred
+        y.pred.int <- plotdata$y.pred
     }
-
-    classes <- fit$classes
-    if (is.factor(y.pred.orig)) {
-        y.pred <- match(y.pred.orig, classes)
-    } else {
-        y.pred <- y.pred.orig
-    }
-
-    labels <- if(missing(labels)) y.pred else match(labels, classes)
 
     colors <- gensvm.plot.colors(fit$n.classes)
     markers <- gensvm.plot.markers(fit$n.classes)
 
-    indices <- match(labels, classes)
+    indices <- if (missing(labels)) y.pred.int else match(labels, fit$classes)
+
     col.vector <- colors[indices]
     mark.vector <- markers[indices]
 
@@ -150,10 +143,10 @@ plot.gensvm <- function(x, labels, newdata=NULL, with.margins=TRUE,
     }
 
     if (fit$n.classes == 3)
-        gensvm.plot.2d(classes, with.margins, with.shading, with.legend, 
+        gensvm.plot.2d(fit$classes, with.margins, with.shading, with.legend, 
                        center.plot)
     else
-        gensvm.plot.1d(classes, with.margins, with.shading, with.legend, 
+        gensvm.plot.1d(fit$classes, with.margins, with.shading, with.legend, 
                        center.plot)
 
     invisible(fit)
