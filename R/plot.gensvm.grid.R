@@ -4,7 +4,7 @@
 #' model in the provided GenSVMGrid object. See the documentation for 
 #' \code{\link{plot.gensvm}} for more information.
 #'
-#' @param grid A \code{gensvm.grid} object trained with refit=TRUE
+#' @param x A \code{gensvm.grid} object trained with refit=TRUE
 #' @param ... further arguments are passed to the plot function
 #'
 #' @return returns the object passed as input
@@ -31,12 +31,12 @@
 #' grid <- gensvm.grid(x, y)
 #' plot(grid, x)
 #'
-plot.gensvm.grid <- function(grid, ...)
+plot.gensvm.grid <- function(x, ...)
 {
-    if (is.null(grid$best.estimator)) {
+    if (is.null(x$best.estimator)) {
         cat("Error: Can't plot, the best.estimator element is NULL\n")
-        return
+        return(invisible(NULL))
     }
-    fit <- grid$best.estimator
+    fit <- x$best.estimator
     return(plot(fit, ...))
 }

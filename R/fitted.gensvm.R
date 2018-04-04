@@ -3,7 +3,7 @@
 #' @description This function shows the fitted class labels of training data 
 #' using a fitted GenSVM model.
 #'
-#' @param fit Fitted \code{gensvm} object
+#' @param object Fitted \code{gensvm} object
 #' @param \dots further arguments are passed to predict
 #'
 #' @return a vector of class labels, with the same type as the original class 
@@ -22,8 +22,9 @@
 #' \code{\link{plot.gensvm}}, \code{\link{predict.gensvm.grid}}, 
 #' \code{\link{gensvm}}, \code{\link{gensvm-package}}
 #'
+#' @method fitted gensvm
+#'
 #' @export
-#' @aliases fitted
 #'
 #' @examples
 #' x <- iris[, -5]
@@ -36,7 +37,8 @@
 #' # compute the accuracy with gensvm.accuracy
 #' gensvm.accuracy(y, yhat)
 #'
-fitted.gensvm <- function(fit, ...)
+fitted.gensvm <- function(object, ...)
 {
-    return(predict(fit, ...))
+    x <- eval.parent(object$call$x)
+    return(predict(object, x, ...))
 }

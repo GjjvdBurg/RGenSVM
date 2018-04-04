@@ -3,7 +3,7 @@
 #' @description Wrapper to get the fitted class labels from the best estimator 
 #' of the fitted GenSVMGrid model. Only works if refit was enabled.
 #'
-#' @param grid A \code{gensvm.grid} object
+#' @param object A \code{gensvm.grid} object
 #' @param \dots further arguments are passed to fitted
 #'
 #' @return a vector of class labels, with the same type as the original class 
@@ -22,8 +22,9 @@
 #' \code{\link{plot.gensvm}}, \code{\link{predict.gensvm.grid}}, 
 #' \code{\link{gensvm}}, \code{\link{gensvm-package}}
 #'
+#' @method fitted gensvm.grid
+#'
 #' @export
-#' @aliases fitted
 #'
 #' @examples
 #' x <- iris[, -5]
@@ -36,7 +37,7 @@
 #' # compute the accuracy with gensvm.accuracy
 #' gensvm.accuracy(y, yhat)
 #'
-fitted.gensvm.grid <- function(grid, ...)
+fitted.gensvm.grid <- function(object, ...)
 {
-    return(predict(grid, ...))
+    return(predict(object, ...))
 }

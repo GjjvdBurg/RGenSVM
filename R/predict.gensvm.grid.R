@@ -7,9 +7,9 @@
 #' this model is only available if \code{refit=TRUE} was specified in the 
 #' \code{\link{gensvm.grid}} call (the default).
 #'
-#' @param grid A \code{gensvm.grid} object trained with \code{refit=TRUE}
-#' @param newx Matrix of new values for \code{x} for which predictions need to 
-#' be computed.
+#' @param object A \code{gensvm.grid} object trained with \code{refit=TRUE}
+#' @param newdata Matrix of new values for \code{x} for which predictions need 
+#' to be computed.
 #' @param \dots further arguments are passed to predict.gensvm()
 #'
 #' @return a vector of class labels, with the same type as the original class 
@@ -44,12 +44,12 @@
 #' # predict training sample
 #' y.hat <- predict(grid, x)
 #'
-predict.gensvm.grid <- function(grid, newx, ...)
+predict.gensvm.grid <- function(object, newdata, ...)
 {
-    if (is.null(grid$best.estimator)) {
+    if (is.null(object$best.estimator)) {
         cat("Error: Can't predict, the best.estimator element is NULL\n")
         return
     }
 
-    return(predict(grid$best.estimator, newx, ...))
+    return(predict(object$best.estimator, newdata, ...))
 }
