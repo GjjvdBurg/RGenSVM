@@ -2,7 +2,37 @@ PKG_CFLAGS = -DCOLUMN_MAJOR_ORDER -DVERSION=0.1.4
 PKG_CPPFLAGS = -Igensvm/include/
 PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -Lgensvm/lib -lgensvm
 
-SOURCES = $(wildcard gensvm/src/*.c)
+SOURCES = \
+	gensvm/src/gensvm_base.c \
+	gensvm/src/gensvm_checks.c \
+	gensvm/src/gensvm_cmdarg.c \
+	gensvm/src/gensvm_consistency.c \
+	gensvm/src/gensvm_copy.c \
+	gensvm/src/gensvm_cross_validation.c \
+	gensvm/src/gensvm_cv_util.c \
+	gensvm/src/gensvm_debug.c \
+	gensvm/src/gensvm_grid.c \
+	gensvm/src/gensvm_gridsearch.c \
+	gensvm/src/gensvm_init.c \
+	gensvm/src/gensvm_io.c \
+	gensvm/src/gensvm_kernel.c \
+	gensvm/src/gensvm_memory.c \
+	gensvm/src/gensvm_optimize.c \
+	gensvm/src/gensvm_predict.c \
+	gensvm/src/gensvm_print.c \
+	gensvm/src/gensvm_queue.c \
+	gensvm/src/gensvm_r_utils.c \
+	gensvm/src/gensvm_simplex.c \
+	gensvm/src/gensvm_sparse.c \
+	gensvm/src/gensvm_strutil.c \
+	gensvm/src/gensvm_sv.c \
+	gensvm/src/gensvm_task.c \
+	gensvm/src/gensvm_timer.c \
+	gensvm/src/gensvm_train.c \
+	gensvm/src/gensvm_update.c \
+        gensvm/src/gensvm_zv.c
+
+
 OBJECTS = gensvm_wrapper.o $(SOURCES:.c=.o) gensvm/lib/libgensvm.a
 
 .PHONY: all libgensvm clean
