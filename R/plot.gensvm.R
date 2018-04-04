@@ -129,8 +129,9 @@ plot.gensvm <- function(x, labels, newdata=NULL, with.margins=TRUE,
     colors <- gensvm.plot.colors(fit$n.classes)
     markers <- gensvm.plot.markers(fit$n.classes)
 
-    col.vector <- colors[labels]
-    mark.vector <- markers[labels]
+    indices <- match(labels, classes)
+    col.vector <- colors[indices]
+    mark.vector <- markers[indices]
 
     if (fit$n.classes == 2)
         S <- cbind(S, matrix(0, nrow(S), 1))
