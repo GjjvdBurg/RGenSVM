@@ -1,15 +1,28 @@
 Package: gensvm
-Version: 0.0.2
-Date: 2017-07-26
+Version: 0.1.0
+Date: 2018-04-04
 Title: GenSVM
 Authors@R: c(person("Gertjan", "van den Burg", role=c("aut", "cre"),
 			email="gertjanvandenburg@gmail.com"),
 		person("Patrick", "Groenen", email="groenen@ese.eur.nl", role="ctb"))
-Description: TBD
+Description: The GenSVM classifier is a generalized multiclass support vector
+	machine (SVM). This classifier aims to find decision boundaries that
+	separate the classes with as wide a margin as possible. In GenSVM, the
+	loss function is very flexible in the way that misclassifications are
+	penalized.  This allows the user to tune the classifier to the dataset
+	at hand and potentially obtain higher classification accuracy than
+	alternative multiclass SVMs.  Moreover, this flexibility means that
+	GenSVM has a number of other multiclass SVMs as special cases. One of
+	the other advantages of GenSVM is that it is trained in the primal
+	space, allowing the use of warm starts during optimization.  This
+	means that for common tasks such as cross validation or repeated model
+	fitting, GenSVM can be trained very quickly.
 License: GPL (>= 2)
 Depends:
     R (>= 3.0.0)
+Classification/MSC: 62H30, 68T10
 URL: https://github.com/GjjvdBurg/RGenSVM
+     https://jmlr.org/papers/v17/14-526.html
 BugReports: https://github.com/GjjvdBurg/RGenSVM
 RoxygenNote: 6.0.1
 NeedsCompilation: yes
