@@ -135,7 +135,7 @@ gensvm <- function(x, y, p=1.0, lambda=1e-8, kappa=0.0, epsilon=1e-6,
     n.classes <- length(unique(y))
 
     # Convert labels to integers
-    classes <- sort(unique(y))
+    classes <- as.character(sort(unique(y)))
     y.clean <- match(y, classes)
 
     # Convert gamma if it is 'auto'
