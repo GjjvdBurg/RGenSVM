@@ -25,11 +25,13 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' x <- iris[, -5]
 #' y <- iris[, 5]
 #'
 #' grid <- gensvm.grid(x, y)
 #' plot(grid, x)
+#' }
 #'
 plot.gensvm.grid <- function(x, ...)
 {

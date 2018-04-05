@@ -60,9 +60,11 @@
 #' fit <- gensvm(x, y)
 #' fit2 <- gensvm.refit(fit, x, y, epsilon=1e-8)
 #'
+#' \dontrun{
 #' # refit a model returned by a grid search
 #' grid <- gensvm.grid(x, y)
 #' fit <- gensvm.refit(fit, x, y, epsilon=1e-8)
+#' }
 #'
 #' # refit on different data
 #' idx <- runif(nrow(x)) > 0.5

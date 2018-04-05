@@ -18,11 +18,13 @@ The parameter grid of the GenSVMGrid object as a data frame.
 Returns the parameter grid of a \code{gensvm.grid} object.
 }
 \examples{
+\dontrun{
 x <- iris[, -5]
 y <- iris[, 5]
 
 grid <- gensvm.grid(x, y)
 pg <- coef(grid)
+}
 
 }
 \references{

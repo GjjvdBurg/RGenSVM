@@ -35,6 +35,7 @@
 #' @importFrom stats predict
 #'
 #' @examples
+#' \dontrun{
 #' x <- iris[, -5]
 #' y <- iris[, 5]
 #'
@@ -43,6 +44,7 @@
 #'
 #' # predict training sample
 #' y.hat <- predict(grid, x)
+#' }
 #'
 predict.gensvm.grid <- function(object, newdata, ...)
 {

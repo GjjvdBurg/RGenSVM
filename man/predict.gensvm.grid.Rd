@@ -27,6 +27,7 @@ this model is only available if \code{refit=TRUE} was specified in the
 \code{\link{gensvm.grid}} call (the default).
 }
 \examples{
+\dontrun{
 x <- iris[, -5]
 y <- iris[, 5]
 
@@ -35,6 +36,7 @@ grid <- gensvm.grid(x, y)
 
 # predict training sample
 y.hat <- predict(grid, x)
+}
 
 }
 \references{

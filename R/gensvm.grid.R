@@ -130,8 +130,10 @@
 #' x <- iris[, -5]
 #' y <- iris[, 5]
 #'
+#' \dontrun{
 #' # use the default parameter grid
 #' grid <- gensvm.grid(x, y, verbose=TRUE)
+#' }
 #'
 #' # use a smaller parameter grid
 #' pg <- expand.grid(p=c(1.0, 1.5, 2.0), kappa=c(-0.9, 1.0), epsilon=c(1e-3))
@@ -140,6 +142,7 @@
 #' # print the result
 #' print(grid)
 #'
+#' \dontrun{
 #' # Using a custom scoring function (accuracy as percentage)
 #' acc.pct <- function(yt, yp) { return (100 * sum(yt == yp) / length(yt)) }
 #' grid <- gensvm.grid(x, y, scoring=acc.pct)
@@ -148,6 +151,7 @@
 #' pg <- expand.grid(kernel=c('rbf'), gamma=c(1e-2, 1e-1, 1, 1e1, 1e2),
 #'                   lambda=c(1e-8, 1e-6), max.iter=c(5000))
 #' grid <- gensvm.grid(x, y, param.grid=pg, verbose=2)
+#' }
 #'
 gensvm.grid <- function(x, y, param.grid='tiny', refit=TRUE, scoring=NULL, cv=3, 
                         verbose=0, return.train.score=TRUE)

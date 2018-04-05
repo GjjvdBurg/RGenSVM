@@ -18,12 +18,14 @@ returns the object passed as input
 Prints the summary of the fitted GenSVMGrid model
 }
 \examples{
+\dontrun{
 x <- iris[, -5]
 y <- iris[, 5]
 
 # fit a grid search and print the resulting object
 grid <- gensvm.grid(x, y)
 print(grid)
+}
 
 }
 \references{

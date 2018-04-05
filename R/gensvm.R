@@ -107,8 +107,8 @@
 #' fit <- gensvm(x, y, max.iter=1000)
 #'
 #' # Nonlinear training
-#' fit <- gensvm(x, y, kernel='rbf', max.iter=5000)
-#' fit <- gensvm(x, y, kernel='poly', degree=2, gamma=1.0, max.iter=5000)
+#' fit <- gensvm(x, y, kernel='rbf', max.iter=1000)
+#' fit <- gensvm(x, y, kernel='poly', degree=2, gamma=1.0, max.iter=1000)
 #'
 #' # Setting the random seed and comparing results
 #' fit <- gensvm(x, y, random.seed=123)

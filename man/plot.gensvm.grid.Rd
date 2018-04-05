@@ -20,11 +20,13 @@ model in the provided GenSVMGrid object. See the documentation for
 \code{\link{plot.gensvm}} for more information.
 }
 \examples{
+\dontrun{
 x <- iris[, -5]
 y <- iris[, 5]
 
 grid <- gensvm.grid(x, y)
 plot(grid, x)
+}
 
 }
 \references{

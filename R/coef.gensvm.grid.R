@@ -26,11 +26,13 @@
 #' @importFrom stats coef
 #'
 #' @examples
+#' \dontrun{
 #' x <- iris[, -5]
 #' y <- iris[, 5]
 #'
 #' grid <- gensvm.grid(x, y)
 #' pg <- coef(grid)
+#' }
 #'
 coef.gensvm.grid <- function(object, ...)
 {
