@@ -66,7 +66,7 @@
 #' # plot a 2-d model
 #' xx <- x[y %in% c('versicolor', 'virginica'), ]
 #' yy <- y[y %in% c('versicolor', 'virginica')]
-#' fit <- gensvm(xx, yy, kernel='rbf', max.iter=5000)
+#' fit <- gensvm(xx, yy, kernel='rbf', max.iter=1000)
 #' plot(fit)
 #'
 plot.gensvm <- function(x, labels, newdata=NULL, with.margins=TRUE, 
