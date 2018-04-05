@@ -8,7 +8,7 @@
 #'
 #' @param x training data matrix. We denote the size of this matrix by 
 #' n_samples x n_features.
-#' @param y training vector of class labes of length n_samples. The number of 
+#' @param y training vector of class labels of length n_samples. The number of 
 #' unique labels in this vector is denoted by n_classes.
 #' @param param.grid String (\code{'tiny'}, \code{'small'}, or \code{'full'}) 
 #' or data frame with parameter configurations to evaluate.  Typically this is 
@@ -48,7 +48,7 @@
 #' \item{cv.idx}{Array with cross validation indices used to split the data}
 #'
 #' @section Using a Parameter Grid:
-#' To evaluate certain paramater configurations, a data frame can be supplied 
+#' To evaluate certain parameter configurations, a data frame can be supplied 
 #' to the \code{param.grid} argument of the function. Such a data frame can 
 #' easily be generated using the R function \code{expand.grid}, or could be 
 #' created through other ways to test specific parameter configurations.

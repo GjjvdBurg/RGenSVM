@@ -11,7 +11,7 @@ gensvm.grid(x, y, param.grid = "tiny", refit = TRUE, scoring = NULL,
 \item{x}{training data matrix. We denote the size of this matrix by 
 n_samples x n_features.}
 
-\item{y}{training vector of class labes of length n_samples. The number of 
+\item{y}{training vector of class labels of length n_samples. The number of 
 unique labels in this vector is denoted by n_classes.}
 
 \item{param.grid}{String (\code{'tiny'}, \code{'small'}, or \code{'full'}) 
@@ -70,7 +70,7 @@ the user.
 }
 \section{Using a Parameter Grid}{
 
-To evaluate certain paramater configurations, a data frame can be supplied 
+To evaluate certain parameter configurations, a data frame can be supplied 
 to the \code{param.grid} argument of the function. Such a data frame can 
 easily be generated using the R function \code{expand.grid}, or could be 
 created through other ways to test specific parameter configurations.

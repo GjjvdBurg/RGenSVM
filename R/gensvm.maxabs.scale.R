@@ -1,6 +1,6 @@
 #' @title Scale each column of a matrix by its maximum absolute value
 #'
-#' @description Scaling a dataset can creatly decrease the computation time of 
+#' @description Scaling a dataset can greatly decrease the computation time of 
 #' GenSVM. This function scales the data by dividing each column of a matrix by 
 #' the maximum absolute value of that column. This preserves sparsity in the 
 #' data while mapping each column to the interval [-1, 1].
