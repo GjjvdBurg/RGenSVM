@@ -515,7 +515,7 @@ SEXP R_gensvm_plotdata_kernels(
 
 	gensvm_kernel_postprocess(model, traindata, testdata);
 
-	double *ZV = Calloc(long, n_test * (K-1));
+	double *ZV = Calloc(double, n_test * (K-1));
 	gensvm_calculate_ZV(model, testdata, ZV);
 
 	long *pred_temp = Calloc(long, n_test);
