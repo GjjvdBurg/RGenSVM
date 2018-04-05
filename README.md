@@ -4,7 +4,7 @@ GenSVM R Package
 This package implements the GenSVM Multiclass Support Vector Machine 
 classifier in R.
 
-![Pretty picture](./.image.png)
+![Pretty picture](https://raw.githubusercontent.com/GjjvdBurg/RGenSVM/1f30df8d941d30ab546421bc56c92c9fa9cf8a59/.image.png)
 
 ```r
 # Plot created with:
