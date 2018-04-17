@@ -5,7 +5,7 @@
 ## R CMD check results
 There were no ERRORs or WARNINGs.
 
-There were 2 NOTEs:
+There was 1 NOTEs:
 
 * checking CRAN incoming feasibility ... NOTE
   Maintainer: 'Gertjan van den Burg <gertjanvandenburg@gmail.com>'
@@ -20,21 +20,5 @@ There were 2 NOTEs:
     multiclass (8:53, 14:14, 15:31)
 
 
-  This is a new submission and these words are not mis-spelled.
-
-* checking compiled code ... NOTE
-  File ‘gensvm/libs/gensvm_wrapper.so’:
-    Found ‘rand’, possibly from ‘rand’ (C)
-      Objects: ‘gensvm/src/gensvm_cv_util.o’, ‘gensvm/src/gensvm_init.o’,
-        ‘gensvm/lib/libgensvm.a’
-    Found ‘srand’, possibly from ‘srand’ (C)
-      Objects: ‘gensvm/src/gensvm_train.o’, ‘gensvm/lib/libgensvm.a’
-
-  Compiled code should not call entry points which might terminate R nor
-  write to stdout/stderr instead of to the console, nor use Fortran I/O
-  nor system RNGs.
-
-
-  rand() and srand() are kept to maintain compatibility between the GenSVM C 
-  library and the Python package. They are not used for cryptographic 
-  purposes.
+  This is a new submission and these words are not mis-spelled, just not in 
+  the dictionary.
