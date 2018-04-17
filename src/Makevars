@@ -22,6 +22,7 @@ SOURCES = \
 	gensvm/src/gensvm_print.c \
 	gensvm/src/gensvm_queue.c \
 	gensvm/src/gensvm_r_utils.c \
+	gensvm/src/gensvm_rand.c \
 	gensvm/src/gensvm_simplex.c \
 	gensvm/src/gensvm_sparse.c \
 	gensvm/src/gensvm_strutil.c \
