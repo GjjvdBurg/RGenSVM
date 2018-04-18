@@ -1,3 +1,11 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Added the URL to the paper in the Description field.
+
+* NOT replaced \dontrun{} by \donttest{} as then the checks take longer than 5 
+  seconds.
+
 ## Test environments
 * local Arch linux install, R 3.4.4
 * win-builder (devel and release)
