@@ -12,7 +12,7 @@ classifier in R.
 > x <- iris[, -5]
 > y <- iris[, 5]
 > fit <- gensvm(x, y, kernel='rbf', gamma=10, max.iter=5000, verbose=1, random.seed=123)
-> plot(fit, x, y, xlim=c(-5, 5), ylim=c(-5, 5))
+> plot(fit, xlim=c(-5, 5), ylim=c(-5, 5))
 > title("Iris dataset (GenSVM + RBF)")
 ```
 
