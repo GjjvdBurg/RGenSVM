@@ -5,6 +5,7 @@ Title: A Generalized Multiclass Support Vector Machine
 Authors@R: c(person("Gertjan", "van den Burg", role=c("aut", "cre"),
 			email="gertjanvandenburg@gmail.com"),
 		person("Patrick", "Groenen", email="groenen@ese.eur.nl", role="ctb"))
+Maintainer: Gertjan van den Burg <gertjanvandenburg@gmail.com>
 Description: The GenSVM classifier is a generalized multiclass support vector
 	machine (SVM). This classifier aims to find decision boundaries that
 	separate the classes with as wide a margin as possible. In GenSVM, the
