@@ -35,7 +35,7 @@
 #' @importFrom stats predict
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' x <- iris[, -5]
 #' y <- iris[, 5]
 #'

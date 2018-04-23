@@ -26,7 +26,7 @@
 #' @importFrom stats coef
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' x <- iris[, -5]
 #' y <- iris[, 5]
 #'
