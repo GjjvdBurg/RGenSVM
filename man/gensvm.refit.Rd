@@ -73,7 +73,7 @@ y <- iris[, 5]
 fit <- gensvm(x, y)
 fit2 <- gensvm.refit(fit, x, y, epsilon=1e-8)
 
-\dontrun{
+\donttest{
 # refit a model returned by a grid search
 grid <- gensvm.grid(x, y)
 fit <- gensvm.refit(fit, x, y, epsilon=1e-8)

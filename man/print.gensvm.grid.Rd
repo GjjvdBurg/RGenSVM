@@ -18,7 +18,7 @@ returns the object passed as input
 Prints the summary of the fitted GenSVMGrid model
 }
 \examples{
-\dontrun{
+\donttest{
 x <- iris[, -5]
 y <- iris[, 5]
 

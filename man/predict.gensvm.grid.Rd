@@ -27,7 +27,7 @@ this model is only available if \code{refit=TRUE} was specified in the
 \code{\link{gensvm.grid}} call (the default).
 }
 \examples{
-\dontrun{
+\donttest{
 x <- iris[, -5]
 y <- iris[, 5]
 

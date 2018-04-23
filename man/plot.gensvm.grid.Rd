@@ -20,7 +20,7 @@ model in the provided GenSVMGrid object. See the documentation for
 \code{\link{plot.gensvm}} for more information.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- iris[, -5]
 y <- iris[, 5]
 

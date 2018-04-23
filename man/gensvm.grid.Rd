@@ -131,7 +131,7 @@ be the same as the param.grid in the input.
 x <- iris[, -5]
 y <- iris[, 5]
 
-\dontrun{
+\donttest{
 # use the default parameter grid
 grid <- gensvm.grid(x, y, verbose=TRUE)
 }
@@ -143,7 +143,7 @@ grid <- gensvm.grid(x, y, param.grid=pg)
 # print the result
 print(grid)
 
-\dontrun{
+\donttest{
 # Using a custom scoring function (accuracy as percentage)
 acc.pct <- function(yt, yp) { return (100 * sum(yt == yp) / length(yt)) }
 grid <- gensvm.grid(x, y, scoring=acc.pct)

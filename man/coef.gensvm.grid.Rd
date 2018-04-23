@@ -18,7 +18,7 @@ The parameter grid of the GenSVMGrid object as a data frame.
 Returns the parameter grid of a \code{gensvm.grid} object.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- iris[, -5]
 y <- iris[, 5]
 
