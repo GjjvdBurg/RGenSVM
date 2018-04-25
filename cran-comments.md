@@ -10,8 +10,8 @@ There was 1 NOTEs:
 * checking CRAN incoming feasibility ... NOTE
   Maintainer: 'Gertjan van den Burg <gertjanvandenburg@gmail.com>'
 
-  Days since last update: 4
+  Days since last update: 6
 
 
   This updated version addresses CRAN check errors on Solaris and 
-  oldrel-windows.
+  oldrel-windows, as well as errors reported by clang-UBSAN and gcc-UBSAN.
