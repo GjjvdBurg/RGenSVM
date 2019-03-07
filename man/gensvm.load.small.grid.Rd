@@ -2,12 +2,12 @@
 % Please edit documentation in R/gensvm.grid.R
 \name{gensvm.load.small.grid}
 \alias{gensvm.load.small.grid}
-\title{Load the default parameter grid for the GenSVM grid search}
+\title{Load the small parameter grid for the GenSVM grid search}
 \usage{
 gensvm.load.small.grid()
 }
 \description{
-This function loads a default parameter grid to use for the 
+This function loads a small parameter grid to use for the 
 GenSVM gridsearch. It contains all possible combinations of the following 
 parameter sets:
 

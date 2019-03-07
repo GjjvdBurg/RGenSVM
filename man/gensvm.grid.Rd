@@ -65,8 +65,11 @@ starts to speed up computation. The function uses the GenSVM C library for
 speed.
 }
 \note{
-This function returns partial results when the computation is interrupted by 
-the user.
+1. This function returns partial results when the computation is interrupted 
+by the user.
+2. The score.time reported in the results only covers the time needed to 
+compute the score from the predictions and true class labels. It does not 
+include the time to compute the predictions themselves.
 }
 \section{Using a Parameter Grid}{
 

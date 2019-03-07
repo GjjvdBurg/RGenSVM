@@ -105,8 +105,11 @@
 #' be the same as the param.grid in the input.
 #'
 #' @note
-#' This function returns partial results when the computation is interrupted by 
-#' the user.
+#' 1. This function returns partial results when the computation is interrupted 
+#' by the user.
+#' 2. The score.time reported in the results only covers the time needed to 
+#' compute the score from the predictions and true class labels. It does not 
+#' include the time to compute the predictions themselves.
 #'
 #' @author
 #' Gerrit J.J. van den Burg, Patrick J.F. Groenen \cr
@@ -332,9 +335,9 @@ gensvm.load.full.grid <- function()
 }
 
 
-#' @title Load the default parameter grid for the GenSVM grid search
+#' @title Load the small parameter grid for the GenSVM grid search
 #'
-#' @description This function loads a default parameter grid to use for the 
+#' @description This function loads a small parameter grid to use for the 
 #' GenSVM gridsearch. It contains all possible combinations of the following 
 #' parameter sets:
 #'
