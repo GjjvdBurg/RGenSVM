@@ -79,7 +79,7 @@ Citing
 ------
 
 If you use GenSVM in your work, please cite the paper using the information 
-avialable through the following R command:
+available through the following R command:
 
 ```r
 > citation('gensvm')
