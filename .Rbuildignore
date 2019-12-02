@@ -1,0 +1,10 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+cran-comments.md
+.git
+.travis.yml
+src/gensvm/.git
+src/gensvm/Makefile
+src/gensvm/tests/Makefile
+src/gensvm/tests
+^\.travis\.yml$

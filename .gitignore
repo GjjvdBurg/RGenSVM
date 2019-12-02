@@ -2,7 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-.Rbuildignore
 gensvm.Rproj
 src/*.o
 src/*.so
