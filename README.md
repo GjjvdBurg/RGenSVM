@@ -87,16 +87,18 @@ avialable through the following R command:
 
 Alternatively, you can use the following BibTeX code directly:
 
-    @article{JMLR:v17:14-526,
-      author  = {Gerrit J.J. {van den Burg} and Patrick J.F. Groenen},
-      title   = {{GenSVM}: A Generalized Multiclass Support Vector Machine},
-      journal = {Journal of Machine Learning Research},
-      year    = {2016},
-      volume  = {17},
-      number  = {225},
-      pages   = {1-42},
-      url     = {http://jmlr.org/papers/v17/14-526.html}
-    }
+```bib
+@article{JMLR:v17:14-526,
+  author  = {Gerrit J.J. {van den Burg} and Patrick J.F. Groenen},
+  title   = {{GenSVM}: A Generalized Multiclass Support Vector Machine},
+  journal = {Journal of Machine Learning Research},
+  year    = {2016},
+  volume  = {17},
+  number  = {225},
+  pages   = {1-42},
+  url     = {http://jmlr.org/papers/v17/14-526.html}
+}
+```
 
 License
 -------
