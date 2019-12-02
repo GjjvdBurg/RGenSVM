@@ -1,6 +1,10 @@
 GenSVM R Package
 ================
 
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/GjjvdBurg/RGenSVM.svg?branch=master)](https://travis-ci.org/GjjvdBurg/RGenSVM)
+<!-- badges: end -->
+
 This package implements the GenSVM Multiclass Support Vector Machine 
 classifier in R.
 

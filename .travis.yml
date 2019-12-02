@@ -1,0 +1,19 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+matrix:
+  include:
+    - language: r
+      os: linux
+      dist: xenial
+      r:
+        - oldrel
+        - release
+        - devel
+    - os: osx
+      language: r
+      r:
+        - oldrel
+        - release
+        - devel
+
+cache: packages
