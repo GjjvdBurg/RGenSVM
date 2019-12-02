@@ -2,17 +2,23 @@
 
 matrix:
   include:
-    - r: oldrel
-      dist: xenial
-    - r: release
-      dist: xenial
-    - r: devel
-      dist: xenial
-    - os: osx
+    - language: r
       r: oldrel
-    - os: osx
+      dist: xenial
+    - language: r
       r: release
-    - os: osx
+      dist: xenial
+    - language: r
+      r: devel
+      dist: xenial
+    - language: r
+      os: osx
+      r: oldrel
+    - language: r
+      os: osx
+      r: release
+    - language: r
+      os: osx
       r: devel
 
 cache: packages
