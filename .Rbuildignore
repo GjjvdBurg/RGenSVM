@@ -8,3 +8,4 @@ src/gensvm/Makefile
 src/gensvm/tests/Makefile
 src/gensvm/tests
 ^\.travis\.yml$
+^CRAN-RELEASE$
