@@ -60,8 +60,7 @@ gensvm.train.test.split <- function(x, y=NULL, train.size=NULL, test.size=NULL,
                                     return.idx=FALSE)
 {
     if (!is.null(y) && dim(as.matrix(x))[1] != dim(as.matrix(y))[1]) {
-        cat("Error: First dimension of x and y should be equal.\n")
-        return
+        stop("Error: First dimension of x and y should be equal.\n")
     }
 
     n.objects <- dim(as.matrix(x))[1]

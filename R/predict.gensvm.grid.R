@@ -49,8 +49,7 @@
 predict.gensvm.grid <- function(object, newdata, ...)
 {
     if (is.null(object$best.estimator)) {
-        cat("Error: Can't predict, the best.estimator element is NULL\n")
-        return
+        stop("Error: Can't predict, the best.estimator element is NULL\n")
     }
 
     return(predict(object$best.estimator, newdata, ...))

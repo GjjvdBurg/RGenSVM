@@ -61,9 +61,7 @@ predict.gensvm <- function(object, newdata, add.rownames=FALSE, ...)
 
     # Sanity check
     if (ncol(x.test) != object$n.features) {
-        cat("Error: Number of features of fitted model and testing",
-            "data disagree.\n")
-        return(invisible(NULL))
+        stop("Error: Number of features of fitted model and testing data disagree.\n")
     }
 
     x.train <- eval.parent(object$call$x)
