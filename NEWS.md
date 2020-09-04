@@ -1,5 +1,9 @@
 # NEWS file for the GenSVM R package
 
+## Version 0.1.4
+
+* Fix return without () in preparation of future checks.
+
 ## Version 0.1.3
 
 * Updated C library to support ``-fno-common`` flag for GCC.
