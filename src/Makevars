@@ -31,8 +31,7 @@ SOURCES = \
 	gensvm/src/gensvm_timer.c \
 	gensvm/src/gensvm_train.c \
 	gensvm/src/gensvm_update.c \
-        gensvm/src/gensvm_zv.c
-
+	gensvm/src/gensvm_zv.c
 
 OBJECTS = gensvm_wrapper.o $(SOURCES:.c=.o)
 
