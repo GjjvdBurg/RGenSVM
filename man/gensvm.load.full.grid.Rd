@@ -19,7 +19,7 @@ combinations of the following parameter sets:
 \references{
 Van den Burg, G.J.J. and Groenen, P.J.F. (2016). \emph{GenSVM: A Generalized 
 Multiclass Support Vector Machine}, Journal of Machine Learning Research, 
-17(225):1--42. URL \url{http://jmlr.org/papers/v17/14-526.html}.
+17(225):1--42. URL \url{https://jmlr.org/papers/v17/14-526.html}.
 }
 \seealso{
 \code{\link{gensvm.grid}}, \code{\link{gensvm.load.tiny.grid}}, 
