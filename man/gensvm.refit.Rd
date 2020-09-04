@@ -4,10 +4,24 @@
 \alias{gensvm.refit}
 \title{Train an already fitted model on new data}
 \usage{
-gensvm.refit(fit, x, y, p = NULL, lambda = NULL, kappa = NULL,
-  epsilon = NULL, weights = NULL, kernel = NULL, gamma = NULL,
-  coef = NULL, degree = NULL, kernel.eigen.cutoff = NULL,
-  max.iter = NULL, verbose = NULL, random.seed = NULL)
+gensvm.refit(
+  fit,
+  x,
+  y,
+  p = NULL,
+  lambda = NULL,
+  kappa = NULL,
+  epsilon = NULL,
+  weights = NULL,
+  kernel = NULL,
+  gamma = NULL,
+  coef = NULL,
+  degree = NULL,
+  kernel.eigen.cutoff = NULL,
+  max.iter = NULL,
+  verbose = NULL,
+  random.seed = NULL
+)
 }
 \arguments{
 \item{fit}{Fitted \code{gensvm} object}

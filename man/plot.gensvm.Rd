@@ -4,9 +4,18 @@
 \alias{plot.gensvm}
 \title{Plot the simplex space of the fitted GenSVM model}
 \usage{
-\method{plot}{gensvm}(x, labels, newdata = NULL, with.margins = TRUE,
-  with.shading = TRUE, with.legend = TRUE, center.plot = TRUE,
-  xlim = NULL, ylim = NULL, ...)
+\method{plot}{gensvm}(
+  x,
+  labels,
+  newdata = NULL,
+  with.margins = TRUE,
+  with.shading = TRUE,
+  with.legend = TRUE,
+  center.plot = TRUE,
+  xlim = NULL,
+  ylim = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{A fitted \code{gensvm} object}

@@ -4,8 +4,16 @@
 \alias{gensvm.validate.params}
 \title{[internal] Validate parameters}
 \usage{
-gensvm.validate.params(p = NULL, kappa = NULL, lambda = NULL,
-  epsilon = NULL, gamma = NULL, weights = NULL, kernel = NULL, ...)
+gensvm.validate.params(
+  p = NULL,
+  kappa = NULL,
+  lambda = NULL,
+  epsilon = NULL,
+  gamma = NULL,
+  weights = NULL,
+  kernel = NULL,
+  ...
+)
 }
 \value{
 TRUE if all values pass their respective conditions, FALSE 

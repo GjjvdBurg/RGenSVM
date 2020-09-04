@@ -4,10 +4,24 @@
 \alias{gensvm}
 \title{Fit the GenSVM model}
 \usage{
-gensvm(x, y, p = 1, lambda = 1e-08, kappa = 0, epsilon = 1e-06,
-  weights = "unit", kernel = "linear", gamma = "auto", coef = 1,
-  degree = 2, kernel.eigen.cutoff = 1e-08, verbose = FALSE,
-  random.seed = NULL, max.iter = 1e+08, seed.V = NULL)
+gensvm(
+  x,
+  y,
+  p = 1,
+  lambda = 1e-08,
+  kappa = 0,
+  epsilon = 1e-06,
+  weights = "unit",
+  kernel = "linear",
+  gamma = "auto",
+  coef = 1,
+  degree = 2,
+  kernel.eigen.cutoff = 1e-08,
+  verbose = FALSE,
+  random.seed = NULL,
+  max.iter = 1e+08,
+  seed.V = NULL
+)
 }
 \arguments{
 \item{x}{data matrix with the predictors. \cr\cr

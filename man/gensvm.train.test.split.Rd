@@ -4,9 +4,15 @@
 \alias{gensvm.train.test.split}
 \title{Create a train/test split of a dataset}
 \usage{
-gensvm.train.test.split(x, y = NULL, train.size = NULL,
-  test.size = NULL, shuffle = TRUE, random.state = NULL,
-  return.idx = FALSE)
+gensvm.train.test.split(
+  x,
+  y = NULL,
+  train.size = NULL,
+  test.size = NULL,
+  shuffle = TRUE,
+  random.state = NULL,
+  return.idx = FALSE
+)
 }
 \arguments{
 \item{x}{array to split}

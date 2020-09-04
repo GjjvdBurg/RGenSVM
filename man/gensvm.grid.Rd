@@ -4,8 +4,16 @@
 \alias{gensvm.grid}
 \title{Cross-validated grid search for GenSVM}
 \usage{
-gensvm.grid(x, y, param.grid = "tiny", refit = TRUE, scoring = NULL,
-  cv = 3, verbose = 0, return.train.score = TRUE)
+gensvm.grid(
+  x,
+  y,
+  param.grid = "tiny",
+  refit = TRUE,
+  scoring = NULL,
+  cv = 3,
+  verbose = 0,
+  return.train.score = TRUE
+)
 }
 \arguments{
 \item{x}{training data matrix. We denote the size of this matrix by 
