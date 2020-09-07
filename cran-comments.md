@@ -1,3 +1,8 @@
+## Resubmission
+
+* This is a resubmission. In this version I have changed the http URLs in the 
+  DESCRIPTION and CITATION files to https, as requested.
+
 ## Test environments
 * Travis: Ubuntu Xenial (devel, release, and old-release)
 * Travis: MacOS 10.13.6 (devel, release, and old-release)
