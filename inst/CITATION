@@ -12,7 +12,7 @@ bibentry(bibtype="article",
   volume = "17",
   number = "225",
   pages = "1-42",
-  url = "http://jmlr.org/papers/v17/14-526.html",
+  url = "https://jmlr.org/papers/v17/14-526.html",
   textVersion = paste(
     "Gerrit J.J. van den Burg and Patrick J.F. Groenen (2016).",
     "GenSVM: A Generalized Multiclass Support Vector Machine.",

@@ -36,7 +36,7 @@ common tasks such as cross validation or repeated model fitting, GenSVM can
 be trained very quickly.
 
 For more information about GenSVM, see the paper: [GenSVM: A Generalized 
-Multiclass Support Vector Machine](http://jmlr.org/papers/v17/14-526.html) by 
+Multiclass Support Vector Machine](https://jmlr.org/papers/v17/14-526.html) by 
 G.J.J. van den Burg and P.J.F. Groenen (*Journal of Machine Learning 
 Research*, 2016).
 
@@ -96,7 +96,7 @@ Alternatively, you can use the following BibTeX code directly:
   volume  = {17},
   number  = {225},
   pages   = {1-42},
-  url     = {http://jmlr.org/papers/v17/14-526.html}
+  url     = {https://jmlr.org/papers/v17/14-526.html}
 }
 ```
 

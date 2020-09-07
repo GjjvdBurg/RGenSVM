@@ -18,13 +18,13 @@ Description: The GenSVM classifier is a generalized multiclass support vector
 	space, allowing the use of warm starts during optimization.  This
 	means that for common tasks such as cross validation or repeated model
 	fitting, GenSVM can be trained very quickly. Based on: G.J.J. van den
-	Burg and P.J.F. Groenen (2018) <http://www.jmlr.org/papers/v17/14-526.html>.
+	Burg and P.J.F. Groenen (2018) <https://www.jmlr.org/papers/v17/14-526.html>.
 License: GPL (>= 2)
 Depends:
     R (>= 3.0.0)
 Classification/MSC: 62H30, 68T10
 URL: https://github.com/GjjvdBurg/RGenSVM
-     http://jmlr.org/papers/v17/14-526.html
+     https://jmlr.org/papers/v17/14-526.html
 BugReports: https://github.com/GjjvdBurg/RGenSVM
 RoxygenNote: 7.1.0
 NeedsCompilation: yes
