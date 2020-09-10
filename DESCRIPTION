@@ -1,5 +1,5 @@
 Package: gensvm
-Version: 0.1.4
+Version: 0.1.5
 Date: 2020-09-04
 Title: A Generalized Multiclass Support Vector Machine
 Authors@R: c(person("Gertjan", "van den Burg", role=c("aut", "cre"),

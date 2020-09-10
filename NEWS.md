@@ -1,5 +1,9 @@
 # NEWS file for the GenSVM R package
 
+## Version 0.1.5
+
+* Fix segmentation fault on Solaris.
+
 ## Version 0.1.4
 
 * Fix return without () in preparation of future checks.
