@@ -60,7 +60,7 @@ The main GenSVM functions are:
 * `gensvm` : Fit a GenSVM model for specific model parameters.
 * `gensvm.grid` : Run a cross-validated grid search for GenSVM.
 
-Both these functions return S3 objects that for which `plot` and `predict` 
+Both these functions return S3 objects for which `plot` and `predict` 
 functions are available. For the GenSVMGrid object the function is applied to 
 the best model found during training. For both of these objects a `coef` 
 function is also available.
