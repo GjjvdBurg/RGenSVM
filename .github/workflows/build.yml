@@ -28,6 +28,7 @@ jobs:
         run: |
           install.packages('remotes')
           remotes::install_deps(dependencies=T)
+          remotes::install_cran('rcmdcheck')
         shell: Rscript {0}
 
       - name: Session info
