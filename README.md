@@ -5,10 +5,11 @@ GenSVM R Package
 [![build](https://github.com/GjjvdBurg/RGenSVM/actions/workflows/build.yml/badge.svg)](https://github.com/GjjvdBurg/RGenSVM/actions/workflows/build.yml)
 <!-- badges: end -->
 
-This package implements the GenSVM Multiclass Support Vector Machine 
-classifier in R.
+This package implements the [GenSVM Multiclass Support Vector 
+Machine](https://jmlr.org/papers/v17/14-526.html) classifier in R.
 
-![Pretty picture](https://raw.githubusercontent.com/GjjvdBurg/RGenSVM/1f30df8d941d30ab546421bc56c92c9fa9cf8a59/.image.png)
+![Illustration of fitting GenSVM with an RBF kernel on the iris 
+dataset](https://raw.githubusercontent.com/GjjvdBurg/RGenSVM/1f30df8d941d30ab546421bc56c92c9fa9cf8a59/.image.png)
 
 ```r
 # Plot created with:
