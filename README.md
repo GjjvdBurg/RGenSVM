@@ -2,7 +2,7 @@ GenSVM R Package
 ================
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/GjjvdBurg/RGenSVM.svg?branch=master)](https://travis-ci.org/GjjvdBurg/RGenSVM)
+[![build](https://github.com/GjjvdBurg/RGenSVM/actions/workflows/build.yml/badge.svg)](https://github.com/GjjvdBurg/RGenSVM/actions/workflows/build.yml)
 <!-- badges: end -->
 
 This package implements the GenSVM Multiclass Support Vector Machine 
