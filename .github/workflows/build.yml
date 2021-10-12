@@ -22,6 +22,7 @@ jobs:
           submodules: true
 
       - name: Install system dependencies
+        if: runner.os == 'Linux'
         run: sudo apt-get install libcurl4-openssl-dev
 
       - name: Setup R
