@@ -1,19 +1,13 @@
 
 ## Test environments
-* Travis: Ubuntu Xenial (devel, release, and old-release)
-* Travis: MacOS 10.13.6 (devel, release, and old-release)
+* Github Actions Ubuntu 20.04 (devel, release, oldrel)
+* Github Actions MacOS 11 (devel, release, oldrel)
+* Github Actions Windows Server 2022 (devel, release, oldrel)
 * win-builder (devel, release, and old-release)
-* R-hub: Solaris (32-bit, release), CentOS (64-bit, R 3.5.2), Fedora (gcc, R-devel)
+* R-hub: all platforms
 
 ## R CMD check results
 There were no ERRORs or WARNINGs.
 
-There was 1 NOTE:
-
-* checking CRAN incoming feasibility ... NOTE
-  Maintainer: 'Gertjan van den Burg <gertjanvandenburg@gmail.com>'
-
-  Days since last update: 3
-
-This update fixes an error that occurred on a particular Solaris build, which
-unfortunately was not addressed in the last version.
+On some platforms there is a spurious NOTE regarding non-portable flags not 
+set by us.

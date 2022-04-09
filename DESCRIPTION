@@ -1,6 +1,6 @@
 Package: gensvm
-Version: 0.1.5
-Date: 2020-09-04
+Version: 0.1.6
+Date: 2022-04-09
 Title: A Generalized Multiclass Support Vector Machine
 Authors@R: c(person("Gertjan", "van den Burg", role=c("aut", "cre"),
 			email="gertjanvandenburg@gmail.com"),
@@ -26,5 +26,5 @@ Classification/MSC: 62H30, 68T10
 URL: https://github.com/GjjvdBurg/RGenSVM
      https://jmlr.org/papers/v17/14-526.html
 BugReports: https://github.com/GjjvdBurg/RGenSVM
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.2
 NeedsCompilation: yes

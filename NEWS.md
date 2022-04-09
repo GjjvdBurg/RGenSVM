@@ -1,5 +1,9 @@
 # NEWS file for the GenSVM R package
 
+## Version 0.1.6
+
+* Bugfix for Fortran calls using `FC_LEN_T`
+
 ## Version 0.1.5
 
 * Fix segmentation fault on Solaris.
