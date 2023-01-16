@@ -2,14 +2,17 @@ name: build
 
 on:
   push:
+    branches:
+      - master
   pull_request:
+    branches:
+      - master
   schedule:
     - cron: 51 19 * * */14
 
-
 jobs:
   R-test:
-    name: Unit tests for R
+    name: Tests
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
