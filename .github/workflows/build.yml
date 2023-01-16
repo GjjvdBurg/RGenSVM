@@ -9,7 +9,7 @@ on:
 
 jobs:
   R-test:
-    name: Unit tests for R
+    name: Tests
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
