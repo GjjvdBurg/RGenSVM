@@ -1,5 +1,11 @@
 # NEWS file for the GenSVM R package
 
+## Version 0.1.7
+
+* Remove any use of (v)sprintf in C code, following the new R package 
+  guidelines
+* Enforce strict prototypes in C code
+
 ## Version 0.1.6
 
 * Bugfix for Fortran calls using `FC_LEN_T`
