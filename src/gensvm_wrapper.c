@@ -101,16 +101,19 @@ void _set_verbosity(int verbosity)
 	extern FILE *GENSVM_ERROR_FILE;
 	extern void (*gensvm_print_out)(const char *, ...);
 	extern void (*gensvm_print_err)(const char *, ...);
+	extern bool R_GENSVM_VERBOSE;
 
 	if (verbosity) {
 		gensvm_print_out = Rprintf;
 		gensvm_print_err = REprintf;
+		R_GENSVM_VERBOSE = true;
 	}
 	else {
 		gensvm_print_out = gensvm_print_output_fpt;
 		gensvm_print_err = gensvm_print_error_fpt;
 		GENSVM_OUTPUT_FILE = NULL;
 		GENSVM_ERROR_FILE = NULL;
+		R_GENSVM_VERBOSE = false;
 	}
 }
 
